@@ -34,36 +34,6 @@
                 </div>
                 
                 <div class="form-control">
-                <label>Phone nr</label>
-                <input type="email" placeholder="070 123 45 67..." name="cellnr" id="cellnr">
-                <small>Error message</small>
-                </div>
-                
-                <div class="form-control">
-                <label>Personal nr</label>
-                <input type="text" placeholder="person nr..." name="pnr" id="pnr">
-                <small>Error message</small>
-                </div>
-                
-                <div class="form-control">
-                <label>Street adress</label>
-                <input type="text" placeholder="mainstreet 101..." name="street" id="street">
-                <small>Error message</small>
-                </div>
-                
-                <div class="form-control">
-                <label>Zip code</label>
-                <input type="text" placeholder="12345..." name="zip" id="zip">
-                <small>Error message</small>
-                </div>
-                
-                <div class="form-control">
-                <label>City</label>
-                <input type="text" placeholder="storköping..." name="city" id="city">
-                <small>Error message</small>
-                </div>
-                
-                <div class="form-control">
                 <label>Password</label>
                 <input type="password" placeholder="password..." name="password1" id="password1">
                 <small>Error message</small>
