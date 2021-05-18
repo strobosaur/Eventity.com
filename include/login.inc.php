@@ -237,7 +237,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     $hashedPwd = password_hash($password1, PASSWORD_DEFAULT);
 
     // PREPARE QUERY
-    $db = new SQLite3("./db/labb1.db");
+    $db = new SQLite3("./db/db.db");
 
     $sql = "UPDATE 'users' 
             SET fname = :fname, lname = :lname, uname = :uname, email = :email, pwd_hashed = :pwd_hashed
@@ -348,7 +348,7 @@ function changeProfileImg($userID, $filePath) {
         }
 
         // PREPARE DB QUERY
-        $db = new SQLite3("./db/labb1.db");
+        $db = new SQLite3("./db/db.db");
 
         $sql1 = "UPDATE 'users'
                 SET profile_img = :profile_img
