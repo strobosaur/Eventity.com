@@ -59,4 +59,66 @@ function uploadImg($fileName,$fileTmpName,$fileError) {
         return false;
     }
 }
+
+// FUNCTION ADD IMAGE TO EVENT
+function addImgToEvent($eventID, $imgPath){
+    $result = eventExists($eventID);
+
+    if($result !== false) {
+        if($result['event_img'] != null) {
+            
+        }
+    }
+}
+
+// FUNCTION DELETE POST
+function deleteEvent($eventID) 
+{
+    $resultEvent = eventExists($eventID);
+    
+    if ($resultEvent === false) {
+        //header("location: index.php?error=postnotfound");
+        //exit();
+        return false;
+    } else {
+        // DELETE IMAGE(S)
+        $db = new SQLite3("./db/db.db");
+        
+        $sql = "SELECT * FROM event_img WHERE eventID = :eventID";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':eventID', $eventID, SQLITE3_INTEGER);
+        $resultImg = $stmt->execute();
+
+        // DELETE IMAGE FILES
+        while ($row = $resultImg->fetchArray()){
+            unlink($row['img_path']);
+        }
+
+        //PREPARE DB QUERY IMAGE DELETE
+        $sql = "DELETE * FROM event_img WHERE eventID = :eventID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':eventID', $eventID, SQLITE3_INTEGER);
+
+        $stmt->execute();
+
+        // PREPARE DB QUERY EVENT DELETE
+        $sql = "DELETE FROM 'events' WHERE eventID = :eventID";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':eventID', $eventID, SQLITE3_INTEGER);
+
+        // EXECUTE QUERY
+        if ($stmt->execute()) {
+            $db->close();
+            //header("location: index.php?error=postremoved");
+            exit();
+        } else {
+            $db->close();
+            //header("location: index.php?error=postnotremoved");
+            exit();
+        }
+    }
+}
+
 ?>
