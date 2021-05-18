@@ -28,20 +28,14 @@
                 </div>
                 
                 <div class="form-control">
-                <label>Street adress</label>
-                <input type="text" placeholder="mainstreet 101..." name="sadress" id="sadress">
+                <label>Email adress</label>
+                <input type="email" placeholder="user@mail.com..." name="email" id="email">
                 <small>Error message</small>
                 </div>
                 
                 <div class="form-control">
-                <label>Zip code</label>
-                <input type="text" placeholder="12345..." name="zadress" id="zadress">
-                <small>Error message</small>
-                </div>
-                
-                <div class="form-control">
-                <label>City</label>
-                <input type="text" placeholder="storköping..." name="cadress" id="cadress">
+                <label>Phone nr</label>
+                <input type="email" placeholder="070 123 45 67..." name="cellnr" id="cellnr">
                 <small>Error message</small>
                 </div>
                 
@@ -52,14 +46,20 @@
                 </div>
                 
                 <div class="form-control">
-                <label>Email adress</label>
-                <input type="email" placeholder="user@mail.com..." name="email" id="email">
+                <label>Street adress</label>
+                <input type="text" placeholder="mainstreet 101..." name="street" id="street">
                 <small>Error message</small>
                 </div>
                 
                 <div class="form-control">
-                <label>Phone nr</label>
-                <input type="email" placeholder="070 123 45 67..." name="cellnr" id="cellnr">
+                <label>Zip code</label>
+                <input type="text" placeholder="12345..." name="zip" id="zip">
+                <small>Error message</small>
+                </div>
+                
+                <div class="form-control">
+                <label>City</label>
+                <input type="text" placeholder="storköping..." name="city" id="city">
                 <small>Error message</small>
                 </div>
                 
