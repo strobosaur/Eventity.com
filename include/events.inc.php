@@ -65,9 +65,28 @@ function addImgToEvent($eventID, $imgPath){
     $result = eventExists($eventID);
 
     if($result !== false) {
-        if($result['event_img'] != null) {
-            
+        $db = new SQLite3("./db/db.db");
+        $sql = "INSERT INTO event_img (eventID, img_path) VALUES ($eventID, $imgPath)";
+        if($db->query($sql)){
+            $db->close();
+            return true;
+        } else {
+            $db->close();
+            return false;
         }
+    }
+}
+
+//FUNCTION REMOVE IMAGE FROM EVENT
+function removeImageFromEvent($eventID, $imgPath) {
+    $db = new SQLite3("./db/db.db");
+    $sql = "DELETE FROM event_img WHERE eventID = $eventID, img_path = $imgPath";
+    if($db->query($sql)){
+        $db->close();
+        return true;
+    } else {
+        $db->close();
+        return false;
     }
 }
 
@@ -77,13 +96,11 @@ function deleteEvent($eventID)
     $resultEvent = eventExists($eventID);
     
     if ($resultEvent === false) {
-        //header("location: index.php?error=postnotfound");
-        //exit();
         return false;
     } else {
         // DELETE IMAGE(S)
         $db = new SQLite3("./db/db.db");
-        
+
         $sql = "SELECT * FROM event_img WHERE eventID = :eventID";
 
         $stmt = $db->prepare($sql);
@@ -111,13 +128,37 @@ function deleteEvent($eventID)
         // EXECUTE QUERY
         if ($stmt->execute()) {
             $db->close();
-            //header("location: index.php?error=postremoved");
             exit();
         } else {
             $db->close();
-            //header("location: index.php?error=postnotremoved");
             exit();
         }
+    }
+}
+
+//FUNCTION ADD ATTENDEE TO EVENT
+function addAttendee($eventID, $userID) {
+    $db = new SQLite3("./db/db.db");
+    $sql = "INSERT INTO attending (eventID, userID) VALUES ($eventID, $userID)";
+    if($db->query($sql)){
+        $db->close();
+        return true;
+    } else {
+        $db->close();
+        return false;
+    }
+}
+
+//FUNCTION REMOVE ATTENDEE FROM EVENT
+function removeAttendee($eventID, $userID) {
+    $db = new SQLite3("./db/db.db");
+    $sql = "DELETE FROM attending WHERE eventID = $eventID, userID = $userID";
+    if($db->query($sql)){
+        $db->close();
+        return true;
+    } else {
+        $db->close();
+        return false;
     }
 }
 
