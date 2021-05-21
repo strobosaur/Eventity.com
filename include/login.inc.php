@@ -130,25 +130,18 @@ function loginUser($userID, $password){
 }
 
 // FUNCTION REGISTER USER TO DB
-function registerUser($fname,$lname,$uname,$email,$pwd1,$pwd2){
+function registerUser($uname,$email,$pwd1,$pwd2){
 
     // TRIM INPUT VARIABLES
-    $fnameValue = trim($fname);
-    $lnameValue = trim($lname);
     $unameValue = trim($uname);
     $emailValue = trim($email);
-    //$pnrValue = isPnr(trim($pnr));
 
     // INPUT VALIDATION
     if(($pwd1 !== $pwd2)
-    || (strlen($fnameValue) < 2)
-    || (strlen($lnameValue) < 2)
     || (strlen($unameValue) < 4)
     || (!isEmail($emailValue))
-    //|| ($pnrValue === false)
     || (userExists($unameValue) !== false)
-    || (userExists($emailValue) !== false)
-    /*|| (userExists($pnrValue) !== false)*/) {
+    || (userExists($emailValue) !== false)) {
 
         return false;
 
@@ -165,11 +158,8 @@ function registerUser($fname,$lname,$uname,$email,$pwd1,$pwd2){
 
         $stmt = $db->prepare($sql);
 
-        $stmt->bindParam('fname', $fnameValue, SQLITE3_TEXT);
-        $stmt->bindParam('lname', $lnameValue, SQLITE3_TEXT);
         $stmt->bindParam('uname', $unameValue, SQLITE3_TEXT);
         $stmt->bindParam('email', $emailValue, SQLITE3_TEXT);
-        //$stmt->bindParam('pnr', $pnrValue, SQLITE3_TEXT);
         $stmt->bindParam('pwd', $pwdHashed, SQLITE3_TEXT);
 
         // EXECUTE DB QUERY
@@ -198,13 +188,13 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     $userEmailValue = trim($userEmail);
 
     // INPUT VALIDATION
-    if (strlen($userFnameValue) < 2) {        
+    if ((!empty($userFnameValue)) && (strlen($userFnameValue) < 2)) {        
         header("location: profile.php?error=fnameshort");
         exit();
-    } else if (strlen($userLnameValue) < 2) {        
+    } else if ((!empty($userLnameValue)) && (strlen($userLnameValue) < 2)) {        
         header("location: profile.php?error=lnameshort");
         exit();
-    } else if (strlen($userUnameValue) < 2) {        
+    } else if ((!empty($userUnameValue)) && (strlen($userUnameValue) < 2)) {        
         header("location: profile.php?error=nnameshort");
         exit();
     } else if (strlen($password1) < 8) {        
@@ -233,8 +223,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
         } 
     }
 
-    // HASH PASSWORD
-    $hashedPwd = password_hash($password1, PASSWORD_DEFAULT);
+    $result = userExists($userID);
 
     // PREPARE QUERY
     $db = new SQLite3("./db/db.db");
@@ -244,11 +233,49 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
             WHERE userID = :userID";
 
     $stmt = $db->prepare($sql);
-    $stmt->bindParam(':fname', $userFnameValue, SQLITE3_TEXT);
-    $stmt->bindParam(':lname', $userLnameValue, SQLITE3_TEXT);
-    $stmt->bindParam(':uname', $userUnameValue, SQLITE3_TEXT);
-    $stmt->bindParam(':email', $userEmailValue, SQLITE3_TEXT);
-    $stmt->bindParam(':pwd_hashed', $hashedPwd, SQLITE3_TEXT);
+
+    // FIRST NAME
+    if(empty($userFnameValue)){ 
+        $userFnameValue = $result['fname'];
+        $stmt->bindParam(':fname', $userFnameValue);
+    } else {
+        $stmt->bindParam(':fname', $userFnameValue, SQLITE3_TEXT);
+    }
+
+    // LAST NAME
+    if(empty($userLnameValue)){ 
+        $userLnameValue = $result['fname'];
+        $stmt->bindParam(':lname', $userLnameValue);
+    } else {
+        $stmt->bindParam(':lname', $userLnameValue, SQLITE3_TEXT);
+    }
+
+    // USER NAME
+    if(empty($userUnameValue)){ 
+        $userUnameValue = $result['uname'];
+        $stmt->bindParam(':uname', $userUnameValue);
+    } else {
+        $stmt->bindParam(':uname', $userUnameValue, SQLITE3_TEXT);
+    }
+
+    // EMAIL ADRESS
+    if(empty($userEmailValue)){ 
+        $userEmailValue = $result['email'];
+        $stmt->bindParam(':email', $userEmailValue);
+    } else {
+        $stmt->bindParam(':email', $userEmailValue, SQLITE3_TEXT);
+    }
+
+    // NEW PASSWORD
+    if (empty($password1)){
+        $hashedPwd = $result['pwd_hashed'];
+        $stmt->bindParam(':pwd_hashed', $hashedPwd, SQLITE3_TEXT);
+    } else {
+        $hashedPwd = password_hash($password1, PASSWORD_DEFAULT);
+        $stmt->bindParam(':pwd_hashed', $hashedPwd, SQLITE3_TEXT);
+    }
+
+    // USER ID
     $stmt->bindParam(':userID', $userID, SQLITE3_INTEGER);
 
     // EXECUTE STATEMENT

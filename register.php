@@ -10,18 +10,6 @@
             <form class="form" id="form" onsubmit="checkRegInput();" action="register_process.php" method="POST">
                 
                 <div class="form-control">
-                <label>First name</label>
-                <input type="text" placeholder="first name..." name="fname" id="fname">
-                <small>Error message</small>
-                </div>
-                
-                <div class="form-control">
-                <label>Last name</label>
-                <input type="text" placeholder="last name..." name="lname" id="lname">
-                <small>Error message</small>
-                </div>
-                
-                <div class="form-control">
                 <label>User name</label>
                 <input type="text" placeholder="nickname..." name="uname" id="uname">
                 <small>Error message</small>
