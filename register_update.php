@@ -12,10 +12,10 @@ if(!isset($_SESSION['userID'])) {
     // ADRESS UPDATE
     if (isset($_POST['upd_adress'])) {
         if (registerUserAdress($_SESSION['userID'], $_POST['street'], $_POST['zip'], $_POST['city'])) {
-            header("location: index.php?error=upd_adress_success");
+            header("location: profile.php?error=upd_adress_success");
             exit();
         } else {
-            header("location: index.php?error=upd_adress_failed");
+            header("location: profile.php?error=upd_adress_failed");
             exit();
         }
     }
