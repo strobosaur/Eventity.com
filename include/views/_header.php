@@ -11,6 +11,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/scripts.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
                 echo '<li><a id="menu_logout" href="logout_process.php">Log out</a></li>';
             } else {
                 echo '<li><a id="menu_login" href="index.php">Login</a></li>';
-                echo '<li><a id="menu_register" href="register.php">Register</a></li>';
+                echo '<li><a id="menu_register" href="index.php">Register</a></li>';
             }
             ?>
         </ul>

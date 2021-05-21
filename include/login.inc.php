@@ -43,7 +43,7 @@ function passwordMatchesDB($userID, $password) {
         return false;
     } else {
         // PASSWORD OK?
-        $passwordHashed = $userData['passwordHash'];
+        $passwordHashed = $userData['pwd_hashed'];
         $pwdOK = password_verify($password, $passwordHashed);
 
         if ($pwdOK === false){
@@ -62,12 +62,11 @@ function userExists($userID){
 
         // DATA TYPE STRING
         $db = new SQLite3("./db/db.db");        
-        $sql = "SELECT * FROM 'users' WHERE uname = :uname OR email = :email OR pnr = :pnr";
+        $sql = "SELECT * FROM 'users' WHERE uname = :uname OR email = :email";
 
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':email', $userID, SQLITE3_TEXT);
         $stmt->bindParam(':uname', $userID, SQLITE3_TEXT);
-        $stmt->bindParam(':pnr', $userID, SQLITE3_TEXT);
 
     } else if (gettype($userID) == "integer") {
 
@@ -126,11 +125,11 @@ function loginUser($userID, $password){
         session_start();
 
         $_SESSION["userID"] = $userData['userID'];
-        $_SESSION["user_fname"] = $userData['fname'];
-        $_SESSION["user_lname"] = $userData['lname'];
+        /*$_SESSION["user_fname"] = $userData['fname'];
+        $_SESSION["user_lname"] = $userData['lname'];*/
         $_SESSION["user_uname"] = $userData['uname'];
         $_SESSION["user_email"] = $userData['email'];
-        $_SESSION["user_profileimg"] = $userData['profile_img'];
+        //$_SESSION["user_profileimg"] = $userData['profile_img'];
         $_SESSION["logged_in"] = true;
 
         header("location: ./index.php?error=loggedin");
@@ -146,14 +145,28 @@ function registerUser($uname,$email,$pwd1,$pwd2){
     $emailValue = trim($email);
 
     // INPUT VALIDATION
-    if(($pwd1 !== $pwd2)
-    || (strlen($unameValue) < 4)
-    || (!isEmail($emailValue))
-    || (userExists($unameValue) !== false)
-    || (userExists($emailValue) !== false)) {
+    if(!passwordMatch($pwd1,$pwd2)){
+        // PASSWORD MISSMATCH
+        header("location: index.php?error=pwd_missmatch");
+        exit();
+    } else if (strlen($unameValue) < 4) {
+        // USERNAME TOO SHORT
+        header("location: index.php?error=uname_short");
+        exit();
+    } else if (!isEmail($emailValue)) {
+        // INVALID EMAIL
+        header("location: index.php?error=email_invalid");
+        exit();
+    } else if (userExists($unameValue) !== false) {
+        // USER NAME TAKEN
+        header("location: index.php?error=uname_taken");
+        exit();
+    } else if (userExists($emailValue) !== false) {
+        // EMAIL TAKEN
+        header("location: index.php?error=email_taken");
+        exit();
 
-        return false;
-
+    // SUCCESS
     } else {
 
         // HASH PASSWORD
@@ -162,18 +175,30 @@ function registerUser($uname,$email,$pwd1,$pwd2){
         // PREPARE DB QUERY
         $db = new SQLite3("./db/db.db");
 
-        $sql = "INSERT INTO 'users' (fname, lname, uname, email, pwd_hashed)
-                VALUES (:fname, :lname, :uname, :email, :pwd)";
+        $sql = "INSERT INTO 'users' (uname, email, pwd_hashed, account_type)
+                VALUES (:uname, :email, :pwd, :account_type)";
 
         $stmt = $db->prepare($sql);
 
-        $stmt->bindParam('uname', $unameValue, SQLITE3_TEXT);
-        $stmt->bindParam('email', $emailValue, SQLITE3_TEXT);
-        $stmt->bindParam('pwd', $pwdHashed, SQLITE3_TEXT);
+        $accountType = 0;
+        $stmt->bindParam(':uname', $unameValue, SQLITE3_TEXT);
+        $stmt->bindParam(':email', $emailValue, SQLITE3_TEXT);
+        $stmt->bindParam(':pwd', $pwdHashed, SQLITE3_TEXT);
+        $stmt->bindParam(':account_type', $accountType, SQLITE3_INTEGER);
 
         // EXECUTE DB QUERY
         if($stmt->execute()) {
+            $result = userExists($emailValue);
             $db->close();
+
+            // SET SESSION VARIABLES
+            session_start();
+            $_SESSION['userID'] = $result['userID'];
+            $_SESSION['uname'] = $result['uname'];
+            $_SESSION['email'] = $result['email'];
+            $_SESSION['account_type'] = $result['account_type'];
+            $_SESSION['logged_in'] = true;
+
             return true;
         } else {
             $db->close();

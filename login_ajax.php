@@ -1,4 +1,6 @@
-<div class="container" id="login-container">
+<?php
+$loginForm =
+'<div class="container" id="login-container">
     <div class="header" id="login-header">
         <h2>Log in</h2>
     </div>
@@ -13,11 +15,16 @@
                             
             <div class="form-control">
             <label>Password</label>
-            <input type="password" placeholder="Password" name="login_password" id="login_password">
+            <input type="password" placeholder="Password" name="login_pwd" id="login_pwd">
             <small>Error message</small>
             </div>
             
             <button type="submit" name="login" id="login">Login</button>
     
     </form>
-</div>
+    <div class="success-message" id="success-message">
+        <h4 id="message"></h4>
+    </div>
+</div>';
+echo $loginForm;
+?>
