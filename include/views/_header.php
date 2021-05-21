@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 
 <?php
-  session_start();
+    session_start();
 ?>
 
 <html>
 
 <head>
-  <title></title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="./css/styles.css">
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
