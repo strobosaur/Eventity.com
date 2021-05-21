@@ -255,7 +255,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
         $userUnameValue = $result['uname'];
         $stmt->bindParam(':uname', $userUnameValue);
     } else {
-        $stmt->bindParam(':uname', $userLnameValue, SQLITE3_TEXT);
+        $stmt->bindParam(':uname', $userUnameValue, SQLITE3_TEXT);
     }
 
     // EMAIL ADRESS
