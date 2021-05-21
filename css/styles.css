@@ -43,5 +43,20 @@ ul li a {
 ul li a:hover {
     background-color: #1f4443;
     color: #CCCCCC;
-    text-decoration: underline;
+}
+
+.left-field {
+    display: block;
+    position: fixed;
+    min-height: 100vh;
+    margin: 48px 0 0 0;
+    width:360px;
+    height:auto;
+}
+
+.event-list {
+    margin: 0 auto 0 360px;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
 }
