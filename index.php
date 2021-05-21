@@ -4,7 +4,8 @@
 
 <div class="left-field" id="left-field">
   <?php
-    include_once 'login_ajax.php';
+    //include_once 'login_ajax.php';
+    include_once 'register_ajax.php';
   ?>
 </div>
 
