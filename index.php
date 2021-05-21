@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-
 <?php
-  session_start();
+  include_once './include/views/_header.php';
 ?>
 
-<html>
-
-<head>
-  <title></title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="./css/styles.css">
-  <script src="./js/functions.js"></script>
-</head>
-
-<body>
-
-</body>
-
-</html>
+<?php
+  include_once './include/views/_footer.php';
+?>
