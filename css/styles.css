@@ -152,3 +152,52 @@ ul li a:hover {
 .form button:hover {
     filter: brightness(150%);
 }
+
+.form-control.success input {
+  border-color: #2ecc71;
+}
+
+.form-control.error input {
+  border-color: #e74c3c;
+}
+
+.form-control.success textarea {
+  border-color: #2ecc71;  
+}
+
+.form-control.error textarea {
+  border-color: #e74c3c;
+}
+
+.form-control small {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;    
+}
+
+.form-control.success small {
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
+  color: #e74c3c;
+}
+
+.success-message h4 {
+    color:#14A098;
+    width: 100%;
+    text-align: center;
+    visibility: hidden;
+}
+
+.success-message.success h4 {
+    color:#14A098;
+    visibility: visible;
+}
+
+.success-message.error h4 {
+    color: red;
+    visibility: visible;
+}

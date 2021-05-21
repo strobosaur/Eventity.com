@@ -1,4 +1,6 @@
-<div class="container" id="register-container">
+<?php
+$regForm =
+'<div class="container" id="register-container">
     <div class="header" id="register-header">
         <h2>Register</h2>
     </div>
@@ -32,4 +34,10 @@
             <button type="submit" name="register" id="register">Register</button>
     
     </form>
-</div>
+    <div class="success-message" id="success-message">
+        <h4 id="message"></h4>
+    </div>
+</div>';
+
+echo $regForm;
+?>
