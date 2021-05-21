@@ -25,6 +25,15 @@ function isPnr($pnr) {
     }
 }
 
+// FUNCTION PASSWORD MATCH
+function passwordMatch($pwd1,$pwd2){
+    if ($pwd1 === $pwd2){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // FUNCTION PASSWORD MATCHES DB
 function passwordMatchesDB($userID, $password) {
     $userData = userExists($userID);
