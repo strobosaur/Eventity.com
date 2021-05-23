@@ -97,10 +97,10 @@ function fetchProfileImg($userID) {
         if ($result['profileImg'] != null) {
             return $result['profileImg'];
         } else {
-            return false;
+            return './img/default_profile_img.png';
         }
     } else {
-        return false;
+        return './img/default_profile_img.png';
     }
 }
     
@@ -125,11 +125,11 @@ function loginUser($userID, $password){
         session_start();
 
         $_SESSION["userID"] = $userData['userID'];
-        /*$_SESSION["user_fname"] = $userData['fname'];
-        $_SESSION["user_lname"] = $userData['lname'];*/
+        $_SESSION["user_fname"] = $userData['fname'];
+        $_SESSION["user_lname"] = $userData['lname'];
         $_SESSION["user_uname"] = $userData['uname'];
         $_SESSION["user_email"] = $userData['email'];
-        //$_SESSION["user_profileimg"] = $userData['profile_img'];
+        $_SESSION['account_type'] = $userData['account_type'];
         $_SESSION["logged_in"] = true;
 
         header("location: ./index.php?error=loggedin");
