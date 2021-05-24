@@ -17,6 +17,9 @@
 </div>
 
 <div class="event-list" id="event-list">
+    <?php
+        include 'event_list.php';
+    ?>
 </div>
 
 <?php

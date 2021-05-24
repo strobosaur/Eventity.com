@@ -9,7 +9,7 @@
             <h2>Create new event</h2>
         </div>
 
-        <form class="form-event" id="create-event-form" name="create-event-form" onsubmit="" action="create_event_process.php" method="post">
+        <form class="form-event" id="create-event-form" name="create-event-form" onsubmit="" action="event_create_process.php" method="post">
 
 
             <div class="form-control">
