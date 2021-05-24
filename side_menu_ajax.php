@@ -5,7 +5,7 @@ $sideMenu =
         <h2>Menu</h2>
     </div>
 
-    <form class="form" id="side-menu-form" action="create_event.php" method="POST">
+    <form class="form" id="side-menu-form" action="event_create.php" method="POST">
 
     <button type="submit" name="create-event-btn" id="create-event-btn">Create new event</button>
 

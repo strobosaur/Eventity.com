@@ -58,7 +58,9 @@ ul li a:hover {
 .event-list {
     margin: 0 auto 0 360px;
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    max-width: calc(100% - 360px);
+    min-width: 400;
     min-height: 100vh;
     padding-top: 48px;
 }
@@ -70,6 +72,7 @@ ul li a:hover {
   overflow: hidden;
   width: auto;
   max-width: 100%;
+  min-width: fit-content;
   margin: 16px;
 }
 
@@ -230,3 +233,54 @@ button:hover {
     color: red;
     visibility: visible;
 }
+
+.event-box {
+    width: 100%;
+    min-width: 400px;
+    padding: 16px 24px;
+}
+
+.event-box .form-link-btn {
+  width: auto;
+  display: block;
+}
+
+.event-box .link-btn {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: #14A098;
+  padding: 0px 32px 16px 32px;
+  margin: 0px;
+  display: inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.event-box .link-btn:hover {
+  filter:brightness(150%);
+}
+
+.event-box p {
+    color: #14A098;
+    padding: 20px 20px;
+    margin: 0px 24px;
+    display: block;
+    width: auto;
+    background-color: #0F292F;
+    border-radius: 8px;
+    border: 3px solid #CB2D6F;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  
+  .event-box small {
+    color: #CCCCCC;
+    padding: 8px 0px 8px 32px;
+    display: inline-block;
+    text-align: center;
+    font-size: 12px;
+  }
