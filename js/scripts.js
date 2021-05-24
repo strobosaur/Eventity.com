@@ -47,6 +47,14 @@ function getRegisterAjax(){
     });
 }
 
+// FUNCTION GET REGISTER FORM
+function getSideMenuAjax(){
+    $.post("side_menu_ajax.php", function(data){
+        $("#left-field").empty();
+        $("#left-field").append(data);
+    });
+}
+
 // WAIT FOR PAGE LOAD
 $(document).ready(function(){
 
@@ -54,6 +62,12 @@ $(document).ready(function(){
     $('#menu_register').click(function(e) {
         e.preventDefault();
         getRegisterAjax();
+    })
+
+    // NAVIGATION MENU LOGIN
+    $('#menu_login').click(function(e) {
+        e.preventDefault();
+        getLoginAjax();
     })
 
     // NAVIGATION MENU LOGIN
