@@ -4,16 +4,24 @@
     padding: 0;
 }
 
+:root {
+    --color1: #501F3A;
+    --color2: #0F292F;
+    --color3: #CB2D6F;
+    --color4: #14A098;
+    --color5: #CCCCCC;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #501F3A;
-    color: #14A098;
+    background-color: var(--color1);
+    color: var(--color4);
 }
 
 nav {
     width: 100%;
     height: 48px;
-    background-color: #0F292F;
+    background-color: var(--color2);
     position: fixed;
     display: block;
     margin: 0;
@@ -35,14 +43,14 @@ ul li a {
     text-decoration: none;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    color: #14A098;
+    color: var(--color4);
     padding: 0 20px;
     display: block;
 }
 
 ul li a:hover {
     /*background-color: #1f4443;*/
-    background-color: #0F292F;
+    background-color: var(--color2);
     filter: brightness(150%);
 }
 
@@ -65,7 +73,7 @@ ul li a:hover {
 
 .container {    
     display: block; 
-    background-color: #0F292F;
+    background-color: var(--color2);
     border-radius: 8px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
     overflow: hidden;
@@ -117,30 +125,30 @@ ul li a:hover {
 }
 
 .form-control input {
-    border: 3px solid #CB2D6F;
+    border: 3px solid var(--color3);
     border-radius: 8px;
     display: block;
     font-family: inherit;
     width: 100%;
     padding: 10px;
     font-size: 14px;
-    background-color: #0F292F;
-    color: #14A098;
+    background-color: var(--color2);
+    color: var(--color4);
 }
 
 /*.form-control input:required + span:after {
-    color:#CB2D6F;
+    color:var(--color3);
     font-size: 16px;
     content:"*";
 }*/
 
 .form-control ::placeholder {
-    color: #14A098;
+    color: var(--color4);
 }
 
 .custom-file-upload {
     background-color: #415f5f;
-    border: 2px solid #CB2D6F;
+    border: 2px solid var(--color3);
     color: #c6cfcf;
     display: inline-block;
     width: 50%;
@@ -152,9 +160,9 @@ ul li a:hover {
 }
 
 .form-control textarea {
-    border: 3px solid #CB2D6F;
-    color: #14A098;
-    background-color: #0F292F;
+    border: 3px solid var(--color3);
+    color: var(--color4);
+    background-color: var(--color2);
     border-radius: 8px;
     display: block;
     font-family: inherit;
@@ -166,9 +174,9 @@ ul li a:hover {
 }
 
 button {
-    background-color: #14A098;
-    border: 2px solid #14A098;
-    color: #0F292F;
+    background-color: var(--color4);
+    border: 2px solid var(--color4);
+    color: var(--color2);
     display: block;
     width: 100%;
     border-radius: 8px;
@@ -215,14 +223,14 @@ button:hover {
 }
 
 .success-message h4 {
-    color:#14A098;
+    color:var(--color4);
     width: 100%;
     text-align: center;
     visibility: hidden;
 }
 
 .success-message.success h4 {
-    color:#14A098;
+    color:var(--color4);
     visibility: visible;
 }
 
@@ -248,7 +256,7 @@ button:hover {
     background: none;
     cursor: pointer;
     font-family: inherit;
-    color: #14A098;
+    color: var(--color4);
     padding: 0px 32px 16px 32px;
     margin: 0px;
     display: inline-block;
@@ -262,20 +270,20 @@ button:hover {
 }
 
 .event-box p {
-    color: #14A098;
+    color: var(--color4);
     padding: 20px 20px;
     margin: 0px 24px;
     display: block;
     width: auto;
-    background-color: #0F292F;
+    background-color: var(--color2);
     border-radius: 8px;
-    border: 3px solid #CB2D6F;
+    border: 3px solid var(--color3);
     font-size: 14px;
     margin-bottom: 16px;
 }
   
   .event-box small {
-    color: #CCCCCC;
+    color: var(--color5);
     padding: 8px 24px;
     display: inline-block;
     text-align: center;
