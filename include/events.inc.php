@@ -179,20 +179,35 @@ function makeEventListItem($row){
     // CREATE EVENT ITEM
     $event =
     '<container class="container">
-        <div class="event-box" id="event-box">   
+        <div class="event-box" id="event-box">';   
 
-            <form class="form-link-btn" id="form-view-event-btn" action="event_view.php" method="POST">
-                <input type="hidden" value="' . $evtID . '" name="eventID">
+        if(isset($_SESSION["userID"])){
+            $event .=
+            '<form class="form-link-btn" id="form-view-event-btn" name="form-view-event-btn" action="event_view.php" method="POST">
+                <input type="hidden" value="' . $evtID . '" id="eventID" name="eventID">
                 <button class="link-btn" type="submit" name="view-event-btn" id="view-event-btn">' . $evtName . '</button>
-            </form>
-            <p>' . $evtText . '</p>
-            <small>Host: ' . $evtUname . '</small>
-            <small>Date: ' . $evtDate . '</small>
-            <small>Time: ' . $evtTime . '</small>
-            <small>Location: ' . $evtCity . '</small>
-            <small>Price: ' . $evtPrice . '</small>
+            </form>';
+        } else {
+            $event .= 
+            '<div class="event-item-header" id="event-item-header">
+                <h3>' . $evtName . '</h3>
+            </div>';
+        }
 
-        </div>
+        $event .=
+            '<p>' . $evtText . '</p>
+            <small>Date: ' . $evtDate . '</small>';
+
+            if(isset($_SESSION['userID'])){
+                $event .=
+                '<small>Host: ' . $evtUname . '</small>
+                <small>Time: ' . $evtTime . '</small>
+                <small>Location: ' . $evtCity . '</small>
+                <small>Price: ' . $evtPrice . '</small>';
+            }
+
+            $event .=
+        '</div>
     </container>';
 
     // POST ITEM

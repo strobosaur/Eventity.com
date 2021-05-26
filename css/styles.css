@@ -79,36 +79,37 @@ ul li a:hover {
     overflow: hidden;
     width: auto;
     margin: 16px;
+    padding: 30px;
 }
 
 .header {
-    margin: 0px 40px;
-    padding: 20px 0px;
+    margin: 0;
+    padding: 20px 20px;
     color: inherit;
     border-bottom: 3px solid #1f4443;
 }
 
 .form {
-    padding: 20px 40px;
+    padding: 20px 0;
     color: inherit;
 }
 
 .form-event {
-    padding: 20px 40px;
+    padding: 20px 0;
     color: inherit;
     width: 600px;
 }
 
 .form-event .form-left {
     display: inline-block;
-    width: 256px;
+    width: 48%;
     z-index: 100;
 }
 
 .form-event .form-right {
     position: relative;
     display: inline-block;
-    width: 256px;
+    width: 48%;
     float: right;
     z-index: 99;
 }
@@ -243,7 +244,6 @@ button:hover {
 .event-box {
     width: 100%;
     min-width: 400px;
-    padding: 16px 24px;
 }
 
 .event-box .form-link-btn {
@@ -258,12 +258,28 @@ button:hover {
     cursor: pointer;
     font-family: inherit;
     color: var(--color4);
-    padding: 0px 32px 16px 32px;
+    padding: 16px 32px;
     margin: 0px;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
     text-decoration: none;
+    font-weight: bold;
     width: 100%;
+}
+
+.event-item-header {
+    width: auto;
+    display: block;
+}
+
+.event-item-header h3 {
+    width: 100%;
+    font-size: 20px;
+    display: inline-block;
+    color: var(--color4);
+    margin: 0;
+    padding: 16px 0;
+    text-align: center;
 }
 
 .event-box .link-btn:hover {
@@ -273,7 +289,7 @@ button:hover {
 .event-box p {
     color: var(--color4);
     padding: 20px 20px;
-    margin: 0px 24px;
+    margin: 0;
     display: block;
     width: auto;
     background-color: var(--color2);
@@ -284,6 +300,43 @@ button:hover {
 }
   
   .event-box small {
+    color: var(--color5);
+    padding: 8px 24px;
+    display: inline-block;
+    text-align: center;
+    font-size: 12px;
+}
+
+.event-view-box {
+    width: 100%;
+    min-width: 400px;
+}
+
+#event-view-main {
+    margin: 20px 0;
+}
+
+#event-view-lowmid {
+    margin: 20px 0;
+}
+
+#event-view-low {
+    margin: 20px 0;
+}
+
+.event-view-box p {
+    color: var(--color4);
+    padding: 20px 20px;
+    margin: 0;
+    display: block;
+    width: auto;
+    background-color: var(--color2);
+    border-radius: 8px;
+    border: 3px solid var(--color3);
+    font-size: 14px;
+}
+  
+  .event-view-box small {
     color: var(--color5);
     padding: 8px 24px;
     display: inline-block;

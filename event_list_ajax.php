@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (!isset($_POST['update_events'])){
     header("location: index.php");
