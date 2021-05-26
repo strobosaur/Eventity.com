@@ -31,6 +31,24 @@ function setErrorMessage(input, msg){
     elementControl.className = 'success-message error';
 }
 
+// FUNCTION UPDATE EVENT LIST
+
+
+// FUNCTION UPDATE POSTS
+function updateEventListAjax(){
+    $.ajax({
+        url: 'event_list_ajax.php',
+        type: 'POST',
+        data: {
+            'update_events': 1,
+        },
+        success: function(response){
+            $("#event-list").empty();
+            $("#event-list").append(response);
+        }
+    });
+  }
+
 // FUNCTION GET LOGIN FORM
 function getLoginAjax(){
     $.post("login_ajax.php", function(data){
