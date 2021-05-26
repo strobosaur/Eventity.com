@@ -17,10 +17,14 @@
 </div>
 
 <div class="event-list" id="event-list">
-    <?php
-        include 'event_list.php';
-    ?>
 </div>
+
+<script>
+    $(document).ready(function(){
+        updateEventListAjax();
+    });
+    var eventListUpdate = setInterval(updateEventListAjax, 2500);
+</script>
 
 <?php
     /*include_once 'login_errors.php';

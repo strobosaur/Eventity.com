@@ -162,4 +162,41 @@ function removeAttendee($eventID, $userID) {
     }
 }
 
+// FUNCTION MAKE EVENT LIST ITEM
+function makeEventListItem($row){
+
+    $creator = userExists($row['event_userID']);
+
+    $evtID = $row['eventID'];
+    $evtUname = $creator['uname'];
+    $evtName = $row['event_name'];
+    $evtText = $row['event_text'];
+    $evtCity = $row['event_city'];
+    $evtDate = $row['event_date'];
+    $evtTime = $row['event_time'];
+    $evtPrice = $row['event_price'];
+
+    // CREATE EVENT ITEM
+    $event =
+    '<container class="container">
+        <div class="event-box" id="event-box">   
+
+            <form class="form-link-btn" id="form-view-event-btn" action="event_view.php" method="POST">
+                <input type="hidden" value="' . $evtID . '" name="eventID">
+                <button class="link-btn" type="submit" name="view-event-btn" id="view-event-btn">' . $evtName . '</button>
+            </form>
+            <p>' . $evtText . '</p>
+            <small>Host: ' . $evtUname . '</small>
+            <small>Date: ' . $evtDate . '</small>
+            <small>Time: ' . $evtTime . '</small>
+            <small>Location: ' . $evtCity . '</small>
+            <small>Price: ' . $evtPrice . '</small>
+
+        </div>
+    </container>';
+
+    // POST ITEM
+    echo $event;
+}
+
 ?>
