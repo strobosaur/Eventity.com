@@ -45,9 +45,10 @@ function updateEventListAjax(){
         success: function(response){
             $("#event-list").empty();
             $("#event-list").append(response);
+            $.getScript("./js/view_event.js");
         }
     });
-  }
+}
 
 // FUNCTION GET LOGIN FORM
 function getLoginAjax(){
