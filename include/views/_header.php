@@ -18,7 +18,14 @@
     <nav id="nav-menu" name="nav-menu">
         <ul>
             <?php
-            if (isset($_SESSION['userID'])){
+            if ((isset($_SESSION['userID'])) && ($_SESSION['account_type'] >= 1)){
+                echo '<li><a id="menu_home" href="index.php">Home</a></li>';
+                //echo '<li><a id="menu_profile" href="profile.php">' . $_SESSION['userNname'] . '</a></li>';
+                echo '<li><a id="menu_profile" href="profile.php">Profile</a></li>';
+                echo '<li><a id="menu_search" href="search.php">Search</a></li>';
+                echo '<li><a id="menu_admin" href="admin.php">Admin</a></li>';
+                echo '<li><a id="menu_logout" href="logout_process.php">Log out</a></li>';
+            } else if (isset($_SESSION['userID'])){
                 echo '<li><a id="menu_home" href="index.php">Home</a></li>';
                 //echo '<li><a id="menu_profile" href="profile.php">' . $_SESSION['userNname'] . '</a></li>';
                 echo '<li><a id="menu_profile" href="profile.php">Profile</a></li>';
