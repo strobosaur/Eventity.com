@@ -23,7 +23,7 @@
     $(document).ready(function(){
         updateEventListAjax();
     });
-    var eventListUpdate = setInterval(updateEventListAjax, 2500);
+    var eventListUpdate = setInterval(updateEventListAjax, 5000);
 </script>
 
 <?php

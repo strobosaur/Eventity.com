@@ -65,8 +65,9 @@ ul li a:hover {
 
 .event-list {
     margin: 0 auto 0 360px;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     max-width: calc(100% - 360px);
     padding-top: 48px;
 }
@@ -77,9 +78,14 @@ ul li a:hover {
     border-radius: 8px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
     overflow: hidden;
-    width: auto;
+    width:fit-content;
     margin: 16px;
     padding: 30px;
+}
+
+.event-view-box {
+    min-width: 600px;
+    max-width: 600px;
 }
 
 .header {
@@ -244,6 +250,7 @@ button:hover {
 .event-box {
     width: 100%;
     min-width: 400px;
+    max-width: 600px;
 }
 
 .event-box .form-link-btn {
@@ -310,6 +317,7 @@ button:hover {
 .event-view-box {
     width: 100%;
     min-width: 400px;
+    max-width: 600px;
 }
 
 #event-view-main {
@@ -342,4 +350,11 @@ button:hover {
     display: inline-block;
     text-align: center;
     font-size: 12px;
+}
+
+#mapid {
+    height: 300px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 24px;
 }
