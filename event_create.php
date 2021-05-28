@@ -4,93 +4,109 @@
 
 <div class="event-list" id="event-list">
     <container class="container "id="create-event">
+        <div id="event-view-box">
 
-        <div class="header">
-            <h2>Create new event</h2>
+            <div class="header">
+                <h2>Create new event</h2>
+            </div>
+
+            <form class="form-event" id="create-event-form" name="create-event-form" onsubmit="" action="event_create_process.php" method="post">
+
+
+                <div class="form-control">
+                <label>Event name</label>
+                <input type="text" placeholder="event name" name="evt_name" id="evt_name" required>
+                <span></span>
+                <small>Error message</small>
+                </div>
+
+                <div class="form-control">
+                <label>Describe your event</label>
+                <textarea placeholder="belching contest, backyard fish sale, beard seminar..." name="evt_text" id="evt_text" maxlength="1000" required></textarea>
+                <span></span>
+                <small>Error message</small>
+                </div>
+
+                <div class="form-left">
+
+                    <div class="form-control">
+                    <label>Start date</label>
+                    <input type="date" name="evt_sdate" id="evt_sdate" min="<?=date("Y-m-d")?>" required>
+                    <span></span>
+                    <small>Error message</small>
+                    </div>
+
+                    <div class="form-control">
+                    <label>End date</label>
+                    <input type="date" name="evt_edate" id="evt_edate" min="<?=date("Y-m-d")?>">
+                    <small>Error message</small>
+                    </div>
+
+                </div>
+
+                <div class="form-right">
+
+                    <div class="form-control">
+                    <label>Start time</label>
+                    <input type="time" name="evt_stime" id="evt_stime" required>
+                    <span></span>
+                    <small>Error message</small>
+                    </div>
+
+                    <div class="form-control">
+                    <label>End time</label>
+                    <input type="time" name="evt_etime" id="evt_etime">
+                    <small>Error message</small>
+                    </div>
+
+                </div>
+
+                <div class="form-control">
+                <label>Adress</label>
+                <input type="text" placeholder="Partystreet 123" name="evt_adress" id="evt_adress">
+                <small>Error message</small>
+                </div>
+
+                <div class="form-left">
+                    <div class="form-control">
+                    <label>Zip</label>
+                    <input type="text" placeholder="123 45" name="evt_zip" id="evt_zip" maxlength="5">
+                    <small>Error message</small>
+                    </div>
+                </div>
+
+                <div class="form-right">
+                    <div class="form-control">
+                    <label>City</label>
+                    <input type="text" placeholder="Kicksville" name="evt_city" id="evt_city">
+                    <small>Error message</small>
+                    </div>
+                </div>
+
+                <div class="form-control">
+                <label>Price</label>
+                <input type="number" placeholder="100" name="evt_price" id="evt_price">
+                <small>Error message</small>
+                </div>
+
+                <div id="mapid">
+                    <script>
+                    var mymap = L.map('mapid').setView([59.8586, 17.6389], 13);
+                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 18,
+                        id: 'mapbox/streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1,
+                        accessToken: 'pk.eyJ1Ijoic3Ryb2Jvc2F1ciIsImEiOiJja3A4NHNkNmEwNWdhMnpvZ2VoMnAwcDBqIn0.h3HZY-HTpvdAfIBv1T_xjQ'
+                    }).addTo(mymap);
+                </script>
+                </div>
+            
+                <button type="submit" name="create" id="create">Create event</button>
+
+            </form>
         </div>
-
-        <form class="form-event" id="create-event-form" name="create-event-form" onsubmit="" action="event_create_process.php" method="post">
-
-
-            <div class="form-control">
-            <label>Event name</label>
-            <input type="text" placeholder="event name" name="evt_name" id="evt_name" required>
-            <span></span>
-            <small>Error message</small>
-            </div>
-
-            <div class="form-control">
-            <label>Describe your event</label>
-            <textarea placeholder="belching contest, backyard fish sale, beard seminar..." name="evt_text" id="evt_text" maxlength="1000" required></textarea>
-            <span></span>
-            <small>Error message</small>
-            </div>
-
-            <div class="form-left">
-
-                <div class="form-control">
-                <label>Start date</label>
-                <input type="date" name="evt_sdate" id="evt_sdate" min="<?=date("Y-m-d")?>" required>
-                <span></span>
-                <small>Error message</small>
-                </div>
-
-                <div class="form-control">
-                <label>End date</label>
-                <input type="date" name="evt_edate" id="evt_edate" min="<?=date("Y-m-d")?>">
-                <small>Error message</small>
-                </div>
-
-            </div>
-
-            <div class="form-right">
-
-                <div class="form-control">
-                <label>Start time</label>
-                <input type="time" name="evt_stime" id="evt_stime" required>
-                <span></span>
-                <small>Error message</small>
-                </div>
-
-                <div class="form-control">
-                <label>End time</label>
-                <input type="time" name="evt_etime" id="evt_etime">
-                <small>Error message</small>
-                </div>
-
-            </div>
-
-            <div class="form-control">
-            <label>Adress</label>
-            <input type="text" placeholder="Partystreet 123" name="evt_adress" id="evt_adress">
-            <small>Error message</small>
-            </div>
-
-            <div class="form-left">
-                <div class="form-control">
-                <label>Zip</label>
-                <input type="text" placeholder="123 45" name="evt_zip" id="evt_zip" maxlength="5">
-                <small>Error message</small>
-                </div>
-            </div>
-
-            <div class="form-right">
-                <div class="form-control">
-                <label>City</label>
-                <input type="text" placeholder="Kicksville" name="evt_city" id="evt_city">
-                <small>Error message</small>
-                </div>
-            </div>
-
-            <div class="form-control">
-            <label>Price</label>
-            <input type="number" placeholder="100" name="evt_price" id="evt_price">
-            <small>Error message</small>
-            </div>
-        
-            <button type="submit" name="create" id="create">Create event</button>
-
-        </form>
     </container>
 </div>
 
