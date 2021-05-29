@@ -138,9 +138,17 @@ function deleteEvent($eventID)
 
 //FUNCTION ADD ATTENDEE TO EVENT
 function addAttendee($eventID, $userID) {
+
+    // PREPARE QUERY
     $db = new SQLite3("./db/db.db");
-    $sql = "INSERT INTO attending (eventID, userID) VALUES ($eventID, $userID)";
-    if($db->query($sql)){
+    $sql = "INSERT INTO attending (eventID, userID) VALUES (:eventID, :userID)";
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(":eventID", $eventID, SQLITE3_INTEGER);
+    $stmt->bindValue(":userID", $userID, SQLITE3_INTEGER);
+
+    // EXECUTE STATEMENT
+    if($stmt->execute()){
         $db->close();
         return true;
     } else {
@@ -151,14 +159,39 @@ function addAttendee($eventID, $userID) {
 
 //FUNCTION REMOVE ATTENDEE FROM EVENT
 function removeAttendee($eventID, $userID) {
+
+    // PREPARE QUERY
     $db = new SQLite3("./db/db.db");
-    $sql = "DELETE FROM attending WHERE eventID = $eventID, userID = $userID";
-    if($db->query($sql)){
+    $sql = "DELETE FROM attending WHERE eventID = :eventID, userID = :userID";
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(":eventID", $eventID, SQLITE3_INTEGER);
+    $stmt->bindValue(":userID", $userID, SQLITE3_INTEGER);
+
+    // EXECUTE STATEMENT
+    if($stmt->execute()){
         $db->close();
         return true;
     } else {
         $db->close();
         return false;
+    }
+}
+
+// FUNCTION COUNT ATTENDEES
+function countAttendees($eventID){
+    $db = new SQLite3("./db/db.db");
+    $sql = "SELECT COUNT(userID)
+            AS userCount
+            FROM attending
+            WHERE eventID = :eventID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':eventID', $eventID, SQLITE3_INTEGER);
+    $result = $stmt->execute();
+    if($row = $result->fetchArray()){
+        return $row['userCount'];
+    } else {
+        return "0";
     }
 }
 

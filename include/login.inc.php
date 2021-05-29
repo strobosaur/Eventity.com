@@ -111,14 +111,16 @@ function loginUser($userID, $password){
     $userData = userExists($userID);
 
     if ($userData === false) {
-        header("location: ./index.php?error=nouser");
-        exit();
+        //header("location: ./index.php?error=nouser");
+        //exit();
+        return false;
     }
 
     // CHECK PASSWORD MATCH
     if (passwordMatchesDB($userID, $password) === false) {
-        header("location: ./index.php?error=wrongpwd");
-        exit();
+        //header("location: ./index.php?error=wrongpwd");
+        //exit();
+        return false;
     } else {
 
         // START SESSION & SESSION VARIABLES
@@ -131,9 +133,8 @@ function loginUser($userID, $password){
         $_SESSION["user_email"] = $userData['email'];
         $_SESSION['account_type'] = $userData['account_type'];
         $_SESSION["logged_in"] = true;
-
-        header("location: ./index.php?error=loggedin");
-        exit();
+        
+        return true;
     }    
 }
 

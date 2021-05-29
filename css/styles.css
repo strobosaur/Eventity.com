@@ -5,23 +5,23 @@
 }
 
 :root {
-    --color1: #501F3A;
-    --color2: #0F292F;
-    --color3: #CB2D6F;
-    --color4: #14A098;
-    --color5: #CCCCCC;
+    --background1: #501F3A;
+    --background2: #0F292F;
+    --decoration1: #CB2D6F;
+    --text1: #14A098;
+    --text2: #CCCCCC;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--color1);
-    color: var(--color4);
+    background-color: var(--background1);
+    color: var(--text1);
 }
 
 nav {
     width: 100%;
     height: 48px;
-    background-color: var(--color2);
+    background-color: var(--background2);
     position: fixed;
     display: block;
     margin: 0;
@@ -43,15 +43,36 @@ ul li a {
     text-decoration: none;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    color: var(--color4);
+    color: var(--text1);
     padding: 0 20px;
     display: block;
 }
 
 ul li a:hover {
-    /*background-color: #1f4443;*/
-    background-color: var(--color2);
+    background-color: var(--background2);
     filter: brightness(150%);
+}
+
+.message-bar {
+    width: auto;
+    height: 48px;
+    padding-right: 64px;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    display: block;
+    z-index: 1000;
+    position: fixed;
+}
+
+.message-bar .message {  
+    display: inline-block;
+    line-height: 48px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text1);
+    padding: 0;
 }
 
 .left-field {
@@ -74,7 +95,7 @@ ul li a:hover {
 
 .container {    
     display: block; 
-    background-color: var(--color2);
+    background-color: var(--background2);
     border-radius: 8px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
     overflow: hidden;
@@ -132,30 +153,30 @@ ul li a:hover {
 }
 
 .form-control input {
-    border: 3px solid var(--color3);
+    border: 3px solid var(--decoration1);
     border-radius: 8px;
     display: block;
     font-family: inherit;
     width: 100%;
     padding: 10px;
     font-size: 14px;
-    background-color: var(--color2);
-    color: var(--color4);
+    background-color: var(--background2);
+    color: var(--text1);
 }
 
 /*.form-control input:required + span:after {
-    color:var(--color3);
+    color:var(--decoration1);
     font-size: 16px;
     content:"*";
 }*/
 
 .form-control ::placeholder {
-    color: var(--color4);
+    color: var(--text1);
 }
 
 .custom-file-upload {
     background-color: #415f5f;
-    border: 2px solid var(--color3);
+    border: 2px solid var(--decoration1);
     color: #c6cfcf;
     display: inline-block;
     width: 50%;
@@ -167,9 +188,9 @@ ul li a:hover {
 }
 
 .form-control textarea {
-    border: 3px solid var(--color3);
-    color: var(--color4);
-    background-color: var(--color2);
+    border: 3px solid var(--decoration1);
+    color: var(--text1);
+    background-color: var(--background2);
     border-radius: 8px;
     display: block;
     font-family: inherit;
@@ -181,9 +202,9 @@ ul li a:hover {
 }
 
 button {
-    background-color: var(--color4);
-    border: 2px solid var(--color4);
-    color: var(--color2);
+    background-color: var(--text1);
+    border: 2px solid var(--text1);
+    color: var(--background2);
     display: block;
     width: 100%;
     border-radius: 8px;
@@ -231,14 +252,14 @@ button:hover {
 }
 
 .success-message h4 {
-    color:var(--color4);
+    color:var(--text1);
     width: 100%;
     text-align: center;
     visibility: hidden;
 }
 
 .success-message.success h4 {
-    color:var(--color4);
+    color:var(--text1);
     visibility: visible;
 }
 
@@ -253,18 +274,18 @@ button:hover {
     max-width: 600px;
 }
 
-.event-box .form-link-btn {
+.form-link-btn {
     width: auto;
     display: block;
 }
 
-.event-box .link-btn {
+.link-btn {
     border: none;
     outline: none;
     background: none;
     cursor: pointer;
     font-family: inherit;
-    color: var(--color4);
+    color: var(--text1);
     padding: 16px 32px;
     margin: 0px;
     display: inline-block;
@@ -272,6 +293,30 @@ button:hover {
     text-decoration: none;
     font-weight: bold;
     width: 100%;
+}
+
+.link-btn:hover {
+    filter:brightness(150%);
+}
+
+.link-btn-small {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text1);
+    padding: 16px 32px;
+    margin: 0px;
+    display: inline-block;
+    font-size: 16px;
+    text-decoration: none;
+    width: auto;
+}
+
+.link-btn-small:hover {
+    filter:brightness(150%);
+    text-shadow: 3px 3px 3px black;
 }
 
 .event-item-header {
@@ -283,31 +328,27 @@ button:hover {
     width: 100%;
     font-size: 20px;
     display: inline-block;
-    color: var(--color4);
+    color: var(--text1);
     margin: 0;
     padding: 16px 0;
     text-align: center;
 }
 
-.event-box .link-btn:hover {
-    filter:brightness(150%);
-}
-
 .event-box p {
-    color: var(--color4);
+    color: var(--text1);
     padding: 20px 20px;
     margin: 0;
     display: block;
     width: auto;
-    background-color: var(--color2);
+    background-color: var(--background2);
     border-radius: 8px;
-    border: 3px solid var(--color3);
+    border: 3px solid var(--decoration1);
     font-size: 14px;
     margin-bottom: 16px;
 }
   
   .event-box small {
-    color: var(--color5);
+    color: var(--text2);
     padding: 8px 24px;
     display: inline-block;
     text-align: center;
@@ -333,19 +374,19 @@ button:hover {
 }
 
 .event-view-box p {
-    color: var(--color4);
+    color: var(--text1);
     padding: 20px 20px;
     margin: 0;
     display: block;
     width: auto;
-    background-color: var(--color2);
+    background-color: var(--background2);
     border-radius: 8px;
-    border: 3px solid var(--color3);
+    border: 3px solid var(--decoration1);
     font-size: 14px;
 }
   
   .event-view-box small {
-    color: var(--color5);
+    color: var(--text2);
     padding: 8px 24px;
     display: inline-block;
     text-align: center;
@@ -388,8 +429,8 @@ button:hover {
   top: 0;
   width: 1.4em;
   height: 1.4em;
-  border: 3px solid var(--color3);
-  background: var(--color2);
+  border: 3px solid var(--decoration1);
+  background: var(--background2);
   border-radius: .2em;
   box-shadow: inset 0 1px 3px rgba(0,0,0, .1), 0 0 0 rgba(203, 34, 237, .2);
   -webkit-transition: all .275s;
@@ -421,4 +462,20 @@ button:hover {
   opacity: 1;
   -webkit-transform: scale(1) rotate(0);
       transform: scale(1) rotate(0);
+}
+
+.fade-out {
+    animation: fadeOut ease-in 1s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+    visibility:hidden;
+  }
 }
