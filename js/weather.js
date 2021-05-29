@@ -1,32 +1,30 @@
+// API ADRESS
 const weatherAPI = 'https://api.met.no/weatherapi/locationforecast/2.0/compact?';
 
+// FUNCTION GET WEATHER DATA FROM API
 async function getWeatherDate(latt,long,sdate,hour){
 
-    console.log(latt);
-    console.log(long);
-    console.log(sdate);
-    console.log(hour);
-
+    // ROUND COORDINATES TO 4 DECIMALS (REQUIRED BY API)
     var roundLatt = Number((parseFloat(latt)).toFixed(4));
     var roundLong = Number((parseFloat(long)).toFixed(4));
-
-    //roundLatt = latt.substr(0,7);
-    //roundLong = long.substr(0,7);
-
-    console.log(roundLatt);
-    console.log(roundLong);
     
+    // FETCH WEATHER DATA FOR INPUT LOCATION
     const response = await fetch(weatherAPI + 'lat=' + roundLatt + '&lon=' + roundLong + '');
     const parsed = await response.json();
 
+    // MAKE ARRAY WITH ONLY WEATHER FORECAST
     var daysArr = parsed.properties.timeseries;
-    console.log(daysArr);
 
+    // ITERATE ARRAY AND LOOK FOR THE DATE MATCHING THE INPUT
     for(var i = 0; i < daysArr.length; i++){
+
+        // SHORTEN WEATHER DATA TIME STRING
         var time = daysArr[i].time.substr(0,13);
-        console.log(time);
+
+        // SPLIT WEATHER DATA TIME STRING (DATE / HOUR)
         var dateTime = time.split("T");
-        console.log(dateTime);
+
+        // IF DATE MATCH FOUND...
         if((dateTime[0] == sdate) && (dateTime[1] == hour)){
 
             var weatherHour = daysArr[i];
@@ -36,12 +34,11 @@ async function getWeatherDate(latt,long,sdate,hour){
             var rainmm = weatherHour.data.next_1_hours.details.precipitation_amount;
             var description = weatherHour.data.next_12_hours.summary.symbol_code;
             
+            // CREATE ARRAY WITH TEMPERATURE, WIND SPEED, RAIN, AND GENERAL INFO
             var returnArr = {temp: temperature,
                             wind: windspd,
                             rain: rainmm,
                             desc: description};
-
-            console.log(returnArr);
 
             return returnArr;
         }

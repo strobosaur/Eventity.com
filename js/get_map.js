@@ -1,3 +1,4 @@
+// FUNCTION GET MAP FROM API
 function getMap(){
     var mymap = L.map('mapid').setView([59.8586, 17.6389], 13);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {

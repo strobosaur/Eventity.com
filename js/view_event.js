@@ -28,7 +28,7 @@ $('#form-view-event-btn').submit(function(e) {
                 $("#weather-box").append("<p>Temperature: " + weatherArr.temp + " °C<br>Wind: " + weatherArr.wind + " m/s<br>Rain: " + weatherArr.rain + " mm<br>In general: " + weatherArr.desc + "</p>");
             } else {
                 $("#weather-box").append("<h4>Expected weather in this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
-                $("#weather-box").append("<p>Too early to say...</p>");
+                $("#weather-box").append("<p>Too early to tell...</p>");
             }
         }
     });

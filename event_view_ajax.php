@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// SECURITY
 if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     header("location: index.php");
     exit();
@@ -8,6 +9,7 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     require_once './include/events.inc.php';
     require_once './include/login.inc.php';
 
+    // GET EVENT & USER DATA
     $eventData = eventExists($_POST['event_ID']);
     $userData = userExists($eventData['event_userID']);
     $viewerData = userExists($_SESSION['userID']);
@@ -40,9 +42,8 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     } else {
         $eventPrice .= " kr";
     }    
-
-    $returnData = array("lat"=>$eventLat,"lng"=>$eventLng,"sdate"=>$eventDate,"hour"=>$eventHour[0]);
     
+    // CREATE EVENT VIEW HTML ELEMENT
     $eventView =
     '<container class="container "id="event-view">
         <div class="event-view-box" id="event-view-box" name="event-view-box">
@@ -87,9 +88,8 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
         </div>
     </container>';
 
+    // CREATE RETURN ARRAY & JSON ENCODE
     $returnArr = array("view"=>$eventView,"lat"=>$eventLat,"lng"=>$eventLng,"sdate"=>$eventDate,"hour"=>$eventHour[0], "mins"=>$eventHour[1]);
     echo json_encode($returnArr);
-
-    //echo $eventView;
 }
 ?>
