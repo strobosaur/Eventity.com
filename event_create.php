@@ -34,11 +34,17 @@
                     <input type="date" name="evt_sdate" id="evt_sdate" min="<?=date("Y-m-d")?>" required>
                     <span></span>
                     <small>Error message</small>
+                    </div>                    
+
+                    <div class="form-control">
+                    <label>Adress</label>
+                    <input type="text" placeholder="Partystreet 123" name="evt_adress" id="evt_adress">
+                    <small>Error message</small>
                     </div>
 
                     <div class="form-control">
-                    <label>End date</label>
-                    <input type="date" name="evt_edate" id="evt_edate" min="<?=date("Y-m-d")?>">
+                    <label>Price</label>
+                    <input type="number" placeholder="100" name="evt_price" id="evt_price">
                     <small>Error message</small>
                     </div>
 
@@ -54,46 +60,12 @@
                     </div>
 
                     <div class="form-control">
-                    <label>End time</label>
-                    <input type="time" name="evt_etime" id="evt_etime">
-                    <small>Error message</small>
-                    </div>
-
-                </div>
-
-                <div class="form-control">
-                <label>Adress</label>
-                <input type="text" placeholder="Partystreet 123" name="evt_adress" id="evt_adress">
-                <small>Error message</small>
-                </div>
-
-                <div class="form-left">
-                    <div class="form-control">
-                    <label>Zip</label>
-                    <input type="text" placeholder="123 45" name="evt_zip" id="evt_zip" maxlength="5">
-                    <small>Error message</small>
-                    </div>
-
-                    <div class="form-control">
                     <label id="indoors-label">Indoors</label>
                     <input type="checkbox" name="evt_indoors" id="evt_indoors" value="1">
                     <label for="evt_indoors"></label>
                     <small>Error message</small>
                     </div>
-                </div>
 
-                <div class="form-right">
-                    <div class="form-control">
-                    <label>City</label>
-                    <input type="text" placeholder="Kicksville" name="evt_city" id="evt_city">
-                    <small>Error message</small>
-                    </div>
-
-                    <div class="form-control">
-                    <label>Price</label>
-                    <input type="number" placeholder="100" name="evt_price" id="evt_price">
-                    <small>Error message</small>
-                    </div>
                 </div>
 
                 <input type="hidden" name="evt_lat" id="evt_lat" value="59.8586">
@@ -121,7 +93,7 @@
                         }
 
                         mymap.on('click', onMapClick);
-                </script>
+                    </script>
                 </div>
             
                 <button type="submit" name="create" id="create">Create event</button>

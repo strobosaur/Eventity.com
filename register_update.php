@@ -12,10 +12,10 @@ if(!isset($_SESSION['userID'])) {
     // ADRESS UPDATE
     if (isset($_POST['upd_adress'])) {
         if (registerUserAdress($_SESSION['userID'], $_POST['street'], $_POST['zip'], $_POST['city'])) {
-            header("location: profile.php?error=upd_adress_success");
+            header("location: index.php?error=upd_adress_success");
             exit();
         } else {
-            header("location: profile.php?error=upd_adress_failed");
+            header("location: index.php?error=upd_adress_failed");
             exit();
         }
     }
@@ -28,13 +28,13 @@ if(!isset($_SESSION['userID'])) {
 
         // CHECK OLD PASSWORD
         if(!passwordMatchesDB($userID, $_POST['password0'])){
-            header("profile.php?error=wrong_pwd");
+            header("location: index.php?error=wrong_pwd");
             exit();
         }
 
         // CHECK NEW PASSWORD MATCH
         if(passwordMatch($_POST['password1'],$_POST['password2'])){
-            header("location: profile.php?error=pwd_missmatch");
+            header("location: index.php?error=pwd_missmatch");
             exit();
         }
 
@@ -72,10 +72,10 @@ if(!isset($_SESSION['userID'])) {
 
         // UPDATE USER DATA IN DATABASE
         if (updateUserProfile($userID,$fname,$lname,$uname,$email,$password1,$password2)) {
-            header("location: profile.php?error=profile_upd_success");
+            header("location: index.php?error=upd_success");
             exit();
         } else {
-            header("location: profile.php?error=profile_upd_failed");
+            header("location: index.php?error=upd_failed");
             exit();
         }
     }
