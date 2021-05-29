@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// SECURITY
 if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     header("location: index.php");
     exit();
@@ -8,6 +9,7 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     require_once './include/events.inc.php';
     require_once './include/login.inc.php';
 
+    // GET EVENT & USER DATA
     $eventData = eventExists($_POST['event_ID']);
     $userData = userExists($eventData['event_userID']);
     $viewerData = userExists($_SESSION['userID']);
@@ -18,21 +20,30 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     $eventID = $eventData["eventID"];
     $eventName = $eventData["event_name"];
     $eventText = $eventData["event_text"];
+
     $eventDate = $eventData["event_date"];
     $eventTime = $eventData["event_time"];
     $eventEdate = $eventData["event_enddate"];
     $eventEtime = $eventData["event_endtime"];
+
+    $eventHour = explode(":", $eventTime);
+
     $eventAdress = $eventData["event_adress"];
     $eventZip = $eventData["event_zip"];
     $eventCity = $eventData["event_city"];
+
+    $eventLat = $eventData["event_lat"];
+    $eventLng = $eventData["event_lng"];
+
     $eventPrice = $eventData["event_price"];
     
     if($eventPrice <= 0){
         $eventPrice = "FREE!";
     } else {
         $eventPrice .= " kr";
-    }
+    }    
     
+    // CREATE EVENT VIEW HTML ELEMENT
     $eventView =
     '<container class="container "id="event-view">
         <div class="event-view-box" id="event-view-box" name="event-view-box">
@@ -53,6 +64,17 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                 <small>Location: ' . $eventAdress . ', ' . $eventZip . ', ' . $eventCity . '</small>
                 <small>Host: ' . $userUname . '</small>
                 <small>Price: ' . $eventPrice . '</small>
+
+                <div id="mapid">
+                    <script>
+                        var mymap = getMap();
+                        var marker = L.marker([' . $eventLat . ',' . $eventLng . ']).addTo(mymap);
+                    </script>
+                </div>
+
+                <div id="weather-box">
+                </div>
+
             </div>
 
             <div id="event-view-low">
@@ -66,6 +88,8 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
         </div>
     </container>';
 
-    echo $eventView;
+    // CREATE RETURN ARRAY & JSON ENCODE
+    $returnArr = array("view"=>$eventView,"lat"=>$eventLat,"lng"=>$eventLng,"sdate"=>$eventDate,"hour"=>$eventHour[0], "mins"=>$eventHour[1]);
+    echo json_encode($returnArr);
 }
 ?>

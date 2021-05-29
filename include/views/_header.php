@@ -7,7 +7,7 @@
 <html>
 
 <head>
-    <title></title>
+    <title>carpe.diem.nu</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -18,6 +18,8 @@
     crossorigin=""></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./js/scripts.js"></script>
+    <script src="./js/get_map.js"></script>
+    <script src="./js/weather.js"></script>
 </head>
 
 <body>

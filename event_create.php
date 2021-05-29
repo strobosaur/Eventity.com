@@ -73,6 +73,13 @@
                     <input type="text" placeholder="123 45" name="evt_zip" id="evt_zip" maxlength="5">
                     <small>Error message</small>
                     </div>
+
+                    <div class="form-control">
+                    <label id="indoors-label">Indoors</label>
+                    <input type="checkbox" name="evt_indoors" id="evt_indoors" value="1">
+                    <label for="evt_indoors"></label>
+                    <small>Error message</small>
+                    </div>
                 </div>
 
                 <div class="form-right">
@@ -81,40 +88,39 @@
                     <input type="text" placeholder="Kicksville" name="evt_city" id="evt_city">
                     <small>Error message</small>
                     </div>
+
+                    <div class="form-control">
+                    <label>Price</label>
+                    <input type="number" placeholder="100" name="evt_price" id="evt_price">
+                    <small>Error message</small>
+                    </div>
                 </div>
 
-                <div class="form-control">
-                <label>Price</label>
-                <input type="number" placeholder="100" name="evt_price" id="evt_price">
-                <small>Error message</small>
-                </div>
+                <input type="hidden" name="evt_lat" id="evt_lat" value="59.8586">
+                <input type="hidden" name="evt_lng" id="evt_lng" value="17.6389">
 
                 <div id="mapid">
                     <script>
-                    var mymap = L.map('mapid').setView([59.8586, 17.6389], 13);
-                    var marker = L.marker([59.8586, 17.6389]).addTo(mymap);
-                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                        maxZoom: 18,
-                        id: 'mapbox/streets-v11',
-                        tileSize: 512,
-                        zoomOffset: -1,
-                        accessToken: 'pk.eyJ1Ijoic3Ryb2Jvc2F1ciIsImEiOiJja3A4NHNkNmEwNWdhMnpvZ2VoMnAwcDBqIn0.h3HZY-HTpvdAfIBv1T_xjQ'
-                    }).addTo(mymap);
-                    function onMapClick(e) {
-                        var coord = e.latlng;
-                        var lat = coord.lat;
-                        var lng = coord.lng;
+                        var mymap = getMap();
+                        var marker = L.marker([59.8586, 17.6389]).addTo(mymap);
 
-                        if (marker != undefined) {
-                            mymap.removeLayer(marker);
-                        };
+                        function onMapClick(e) {
+                            var coord = e.latlng;
+                            var lat = coord.lat;
+                            var lng = coord.lng;
 
-                        marker = L.marker([lat, lng]).addTo(mymap);
-                        console.log("You clicked the map at " + e.latlng);
-                    }
+                            if (marker != undefined) {
+                                mymap.removeLayer(marker);
+                            };
 
-                    mymap.on('click', onMapClick);
+                            marker = L.marker([lat, lng]).addTo(mymap);
+                            console.log("You clicked the map at " + e.latlng);
+
+                            $("#evt_lat").val(lat);
+                            $("#evt_lng").val(lng);
+                        }
+
+                        mymap.on('click', onMapClick);
                 </script>
                 </div>
             
