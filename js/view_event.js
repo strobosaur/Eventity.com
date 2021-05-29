@@ -2,8 +2,8 @@
 $('#form-view-event-btn').submit(function(e) {
     e.preventDefault();
     var eventID = $("#eventID").val();
-
-    $.ajax({
+    getEventViewAjax(eventID);
+    /*$.ajax({
         url: 'event_view_ajax.php',
         type: 'POST',
         dataType: 'json',
@@ -33,5 +33,5 @@ $('#form-view-event-btn').submit(function(e) {
                 $("#weather-box").append("<p>Too early to tell...</p>");
             }
         }
-    });
+    });*/
 });

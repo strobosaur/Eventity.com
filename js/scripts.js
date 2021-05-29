@@ -59,6 +59,40 @@ function getLoginAjax(){
     });
 }
 
+// FUNCTION GET LOGIN FORM
+function getEventViewAjax(eventID){
+    $.ajax({
+        url: 'event_view_ajax.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            'view_event': 1,
+            'event_ID': eventID,
+        },
+        success: async function(response){
+            stopUpdateEvents();
+
+            // APPEND EVENT VIEW
+            $('#event-list').empty();
+            $('#event-list').append(response.view);
+            $.getScript('./js/attend_event.js');
+
+            // GET WEATHER DATA
+            var weatherArr = await getWeatherDate(response.lat,response.lng,response.sdate,response.hour);
+            $("#event-view-lowmid").append('<div id="weather-box"></div>');
+
+            // IS THERE WEATHER DATA FOR THE DATE/TIME OF THIS EVENT?
+            if (weatherArr !== false){
+                $("#weather-box").append("<h4>Expected weather in this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
+                $("#weather-box").append("<p>Temperature: " + weatherArr.temp + " °C<br>Wind: " + weatherArr.wind + " m/s<br>Rain: " + weatherArr.rain + " mm<br>In general: " + weatherArr.desc + "</p>");
+            } else {
+                $("#weather-box").append("<h4>Expected weather in this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
+                $("#weather-box").append("<p>Too early to tell...</p>");
+            }
+        }
+    });
+}
+
 // FUNCTION GET REGISTER FORM
 function getRegisterAjax(){
     $.post("register_ajax.php", function(data){
@@ -75,12 +109,6 @@ function getSideMenuAjax(){
     });
 }
 
-// SET MESSAGE
-function setTopBarMessage(msg){
-    $("#message-bar").empty();
-    $("#message-bar").append("<div class='fade-out' id='fade-out'><p class='message' id='top-msg'>" + msg + "</p></div>");
-}
-
 // FUNCTION GET MENU
 function getMenuAjax(){
     $.ajax({
@@ -95,6 +123,12 @@ function getMenuAjax(){
             $.getScript("./js/nav_menu_action.js");
         }
     });
+}
+
+// SET MESSAGE
+function setTopBarMessage(msg){
+    $("#message-bar").empty();
+    $("#message-bar").append("<div class='fade-out' id='fade-out'><p class='message' id='top-msg'>" + msg + "</p></div>");
 }
 
 // FUNCTION CLEAR UPDATES

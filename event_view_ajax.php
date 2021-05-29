@@ -83,15 +83,30 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
 
             </div>
 
-            <div id="event-view-low">
-                <form class="form-link-btn" id="form-event-attend-btn" action="event_attend.php" method="POST">
+            <div id="event-view-low">';
+
+            if (isAttending($eventID, $userID)){
+                $eventView .=
+                '<form class="form-link-btn" id="form-remove-attend-btn" action="event_attend.php" method="POST">
 
                     <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
-                    <input type="hidden" value="' . $viewerData["userID"] . '" id="attendingID" name="attendingID">
+                    <input type="hidden" value="' . $userID . '" id="attendingID" name="attendingID">
+
+                    <button type="submit" name="remove-attend-btn" id="remove-attend-btn">Don´t attend</button>
+                </form>';
+            } else {
+                $eventView .=
+                '<form class="form-link-btn" id="form-event-attend-btn" action="event_attend.php" method="POST">
+
+                    <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
+                    <input type="hidden" value="' . $userID . '" id="attendingID" name="attendingID">
 
                     <button type="submit" name="event-attend-btn" id="event-attend-btn">Attend</button>
-                </form>
-            </div>            
+                </form>';
+            }
+
+            $eventView .=
+            '</div>            
 
         </div>
     </container>';
