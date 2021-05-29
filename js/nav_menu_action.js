@@ -36,8 +36,8 @@ $(document).ready(function(){
     // NAVIGATION MENU LOGIN
     $('#menu_home').click(function(e) {
         e.preventDefault();
-        getPostformAjax();
-        updatePostsAjax();
+        getSideMenuAjax();
+        updateEventListAjax();
         startUpdateEvents();
     })
     
