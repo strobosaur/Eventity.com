@@ -73,6 +73,13 @@
                     <input type="text" placeholder="123 45" name="evt_zip" id="evt_zip" maxlength="5">
                     <small>Error message</small>
                     </div>
+
+                    <div class="form-control">
+                    <label id="indoors-label">Indoors</label>
+                    <input type="checkbox" name="evt_indoors" id="evt_indoors" value="1">
+                    <label for="evt_indoors"></label>
+                    <small>Error message</small>
+                    </div>
                 </div>
 
                 <div class="form-right">
@@ -81,12 +88,12 @@
                     <input type="text" placeholder="Kicksville" name="evt_city" id="evt_city">
                     <small>Error message</small>
                     </div>
-                </div>
 
-                <div class="form-control">
-                <label>Price</label>
-                <input type="number" placeholder="100" name="evt_price" id="evt_price">
-                <small>Error message</small>
+                    <div class="form-control">
+                    <label>Price</label>
+                    <input type="number" placeholder="100" name="evt_price" id="evt_price">
+                    <small>Error message</small>
+                    </div>
                 </div>
 
                 <input type="hidden" name="evt_lat" id="evt_lat" value="59.8586">

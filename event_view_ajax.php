@@ -24,6 +24,8 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     $eventEdate = $eventData["event_enddate"];
     $eventEtime = $eventData["event_endtime"];
 
+    $eventHour = explode(":", $eventTime);
+
     $eventAdress = $eventData["event_adress"];
     $eventZip = $eventData["event_zip"];
     $eventCity = $eventData["event_city"];
@@ -37,7 +39,9 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
         $eventPrice = "FREE!";
     } else {
         $eventPrice .= " kr";
-    }
+    }    
+
+    $returnData = array("lat"=>$eventLat,"lng"=>$eventLng,"sdate"=>$eventDate,"hour"=>$eventHour[0]);
     
     $eventView =
     '<container class="container "id="event-view">
@@ -66,6 +70,10 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                         var marker = L.marker([' . $eventLat . ',' . $eventLng . ']).addTo(mymap);
                     </script>
                 </div>
+
+                <div id="weather-box">
+                </div>
+
             </div>
 
             <div id="event-view-low">
@@ -79,6 +87,9 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
         </div>
     </container>';
 
-    echo $eventView;
+    $returnArr = array("view"=>$eventView,"lat"=>$eventLat,"lng"=>$eventLng,"sdate"=>$eventDate,"hour"=>$eventHour[0], "mins"=>$eventHour[1]);
+    echo json_encode($returnArr);
+
+    //echo $eventView;
 }
 ?>
