@@ -42,6 +42,8 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     } else {
         $eventPrice .= " kr";
     }    
+
+    $attendees = countAttendees($eventID);
     
     // CREATE EVENT VIEW HTML ELEMENT
     $eventView =
@@ -75,13 +77,19 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                 <div id="weather-box">
                 </div>
 
+                <div id="attend-info">                    
+                    <button class="link-btn-small" type="submit" name="event-attendees" id="event-attendees" value="' . $eventID . '">Attending (' . $attendees . ')</button>
+                </div>
+
             </div>
 
             <div id="event-view-low">
                 <form class="form-link-btn" id="form-event-attend-btn" action="event_attend.php" method="POST">
-                    <input type="hidden" value="' . $eventID . '" id="eventID name="eventID">
+
+                    <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
                     <input type="hidden" value="' . $viewerData["userID"] . '" id="attendingID" name="attendingID">
-                    <button class="link-btn" type="submit" name="event-attend-btn" id="event-attend-btn">Attend</button>
+
+                    <button type="submit" name="event-attend-btn" id="event-attend-btn">Attend</button>
                 </form>
             </div>            
 

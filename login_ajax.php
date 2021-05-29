@@ -15,7 +15,7 @@ $loginForm =
                         
         <div class="form-control">
         <label>Password</label>
-        <input type="password" placeholder="Password" name="login_pwd" id="login_pwd">
+        <input type="password" placeholder="password" name="login_pwd" id="login_pwd">
         <small>Error message</small>
         </div>
         
@@ -26,9 +26,7 @@ $loginForm =
         ?>
     
     </form>
-    <div class="success-message" id="success-message">
-        <h4 id="message"></h4>
-    </div>
 </div>';
+
 echo $loginForm;
 ?>

@@ -55,6 +55,7 @@ function getLoginAjax(){
     $.post("login_ajax.php", function(data){
         $("#left-field").empty();
         $("#left-field").append(data);
+        $.getScript("./js/login.js");
     });
 }
 
@@ -74,24 +75,35 @@ function getSideMenuAjax(){
     });
 }
 
-// WAIT FOR PAGE LOAD
-$(document).ready(function(){
+// SET MESSAGE
+function setTopBarMessage(msg){
+    $("#message-bar").empty();
+    $("#message-bar").append("<div class='fade-out' id='fade-out'><p class='message' id='top-msg'>" + msg + "</p></div>");
+}
 
-    // NAVIGATION MENU REGISTER
-    $('#menu_register').click(function(e) {
-        e.preventDefault();
-        getRegisterAjax();
-    })
+// FUNCTION GET MENU
+function getMenuAjax(){
+    $.ajax({
+        url: './include/views/nav_menu_ajax.php',
+        type: 'POST',
+        data: {
+            'get_menu': 1,
+        },
+        success: function(response){
+            $("#nav-menu").empty();
+            $("#nav-menu").append(response);
+            $.getScript("./js/nav_menu_action.js");
+        }
+    });
+}
 
-    // NAVIGATION MENU LOGIN
-    $('#menu_login').click(function(e) {
-        e.preventDefault();
-        getLoginAjax();
-    })
+// FUNCTION CLEAR UPDATES
+function stopUpdateEvents(){
+    clearInterval(eventListUpdate);
+}
 
-    // NAVIGATION MENU LOGIN
-    $('#menu_login').click(function(e) {
-        e.preventDefault();
-        getLoginAjax();
-    })
-})
+// FUNCTION START UPDATING POSTS
+function startUpdateEvents(){
+    clearInterval(eventListUpdate);
+    eventListUpdate = setInterval(updateEventListAjax, 5000);
+}

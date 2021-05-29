@@ -18,6 +18,8 @@ $('#form-view-event-btn').submit(function(e) {
             $('#event-list').empty();
             $('#event-list').append(response.view);
 
+            $.getScript('./js/attend_event.js');
+
             // GET WEATHER DATA
             var weatherArr = await getWeatherDate(response.lat,response.lng,response.sdate,response.hour);
             $("#event-view-lowmid").append('<div id="weather-box"></div>');

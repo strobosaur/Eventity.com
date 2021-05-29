@@ -5,9 +5,11 @@
 <div class="left-field" id="left-field">
     <?php
         if(!isset($_SESSION['userID'])){
-            
-            echo "<script>getLoginAjax();</script>";
-            
+            ?>
+            <script>
+                getLoginAjax();
+            </script>
+            <?php
         } else {
             
             echo "<script>getSideMenuAjax();</script>";
