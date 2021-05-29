@@ -34,9 +34,6 @@ $regForm =
         <button type="submit" name="register" id="register">Register</button>
     
     </form>
-    <div class="success-message" id="success-message">
-        <h4 id="message"></h4>
-    </div>
 </div>';
 
 echo $regForm;

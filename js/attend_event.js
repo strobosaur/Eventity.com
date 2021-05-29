@@ -1,4 +1,4 @@
-// FUNCTION ATTEND EVENT
+// ATTEND EVENT
 $("#form-event-attend-btn").submit(function(e) {
     e.preventDefault();
 
@@ -21,7 +21,7 @@ $("#form-event-attend-btn").submit(function(e) {
     })
 })
 
-// FUNCTION ATTEND EVENT
+// DON'T ATTEND EVENT
 $("#form-remove-attend-btn").submit(function(e) {
     e.preventDefault();
 
