@@ -13,6 +13,7 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     $eventData = eventExists($_POST['event_ID']);
     $userData = userExists($eventData['event_userID']);
     $viewerData = userExists($_SESSION['userID']);
+    $profileImg = fetchProfileImg($userData['email']);
 
     $userID = $userData['userID'];
     $userUname = $userData['uname'];
@@ -62,10 +63,21 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
             </div>
 
             <div id="event-view-lowmid">
-                <small>Starts: ' . $eventDate . ', ' . $eventTime . '</small>
-                <small>Location: ' . $eventAdress . ', ' . $eventZip . ', ' . $eventCity . '</small>
-                <small>Host: ' . $userUname . '</small>
-                <small>Price: ' . $eventPrice . '</small>
+
+                <div class="event-list-low">
+                    <div class="event-list-lowleft">
+                        <img id="profile-img2" src="' . $profileImg . '" width="40px" height="40px">
+                        <small>Created by: <br>' . $userUname . '</small>
+                    </div>
+                    <div class="event-list-lowmid">
+                        <small>Date: ' . $eventDate . '<br>
+                            Time: ' . $eventTime . '</small>
+                    </div>
+                    <div class="event-list-lowright">
+                        <small>' . $eventCity . '<br>
+                        Price: ' . $eventPrice . '</small>
+                    </div>
+                </div>
 
                 <div id="mapid">
                     <script>
