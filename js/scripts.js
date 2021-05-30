@@ -143,8 +143,8 @@ function getMenuAjax(){
             'get_menu': 1,
         },
         success: function(response){
-            $("#nav-menu").empty();
-            $("#nav-menu").append(response);
+            $("#header-mid").empty();
+            $("#header-mid").append(response);
             $.getScript("./js/nav_menu_action.js");
         }
     });

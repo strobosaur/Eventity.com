@@ -14,7 +14,7 @@
 
         // LOGIN USER
         if(loginUser($_POST['login_name'], $_POST['login_pwd'])) {
-            echo true;
+            echo $_SESSION['profile_img'];
         } else {
             echo false;
         }

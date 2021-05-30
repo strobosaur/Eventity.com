@@ -13,12 +13,16 @@ function makeAdminListItem($row){
     // CREATE EVENT ITEM
     $event =
     '<container class="container">
-        <div class="event-box" id="event-box">
+        <div class="event-box-admin" id="event-box">
         <button class="view-event-btn" type="submit" data-cid="' . $evtID . '" name="view-event-btn" id="view-event-btn">' . $evtName . '</button>
 
             <small>Host: ' . $evtUname . '</small>
             <small>Time: ' . $evtTime . '</small>
             <small>Price: ' . $evtPrice . '</small>
+        </div>
+        <div class="event-box-admin2" id="event-box">
+            <button class="event-admin-ok-btn" type="submit" id="link-btn-small" data-cid="'. $evtID .'">Approve</button>
+            <button class="event-admin-deny-btn" type="submit" id="link-btn-small" data-cid="'. $evtID .'">Delete</button>
         </div>
     </container>';
 

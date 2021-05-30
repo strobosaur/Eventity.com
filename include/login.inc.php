@@ -113,6 +113,7 @@ function loginUser($userID, $password){
         $_SESSION["user_lname"] = $userData['lname'];
         $_SESSION["user_uname"] = $userData['uname'];
         $_SESSION["user_email"] = $userData['email'];
+        $_SESSION['profile_img'] = $userData['profile_img'];
         $_SESSION['account_type'] = $userData['account_type'];
         $_SESSION["logged_in"] = true;
         
@@ -302,7 +303,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     if ($stmt->execute()){
 
         $userData = userExists($userID);
-        
+
         // START SESSION & SESSION VARIABLES
         session_start();
 
