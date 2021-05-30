@@ -44,7 +44,6 @@ $(document).ready(function(){
     // NAVIGATION MENU PROFILE
     $('#menu_profile').click(function(e) {
         e.preventDefault();
-        getProfileAjax();
-        
+        getProfileAjax();        
     })
 });
