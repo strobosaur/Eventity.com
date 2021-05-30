@@ -25,7 +25,8 @@ function getSideMenuAdmin(){
         success: function(response){
             $("#left-field").empty();
             $("#left-field").append(response);
-            $.getScript("./admin/js/admin_view_event.js");
+            $.getScript("./admin/js/admin_event_list.js");
+            $.getScript("./admin/js/admin_user_list.js");
         }
     });
 

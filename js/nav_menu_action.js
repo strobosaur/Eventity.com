@@ -44,6 +44,15 @@ $(document).ready(function(){
     // NAVIGATION MENU PROFILE
     $('#menu_profile').click(function(e) {
         e.preventDefault();
+        stopUpdateEvents();
         getProfileAjax();        
+    })
+    
+    // NAVIGATION MENU PROFILE
+    $('#menu_admin').click(function(e) {
+        e.preventDefault();
+        stopUpdateEvents();
+        updateEventListAdmin();
+        getSideMenuAdmin();
     })
 });
