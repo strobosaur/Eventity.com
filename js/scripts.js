@@ -67,7 +67,6 @@ function getEventViewAjax(eventID){
             'event_ID': eventID,
         },
         success: async function(response){
-            stopUpdateEvents();
 
             // APPEND EVENT VIEW
             $('#event-list').empty();

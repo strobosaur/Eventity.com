@@ -16,7 +16,9 @@ if (!isset($_POST['admin_update_events']) || !($_SESSION['account_type'] >= 1)){
                           ORDER BY eventID DESC");
 
     // CREATE EVENT LIST
-    $eventList = '<h2>Events awaiting approval</h2>';
+    $eventList = '';
+
+    $eventList .= '<div class="header"><h2>Events awaiting approval</h2></div>';
 
     // LOOOP THROUGH QUERY
     while ($row = $result->fetchArray()){

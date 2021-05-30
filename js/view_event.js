@@ -2,6 +2,7 @@
 $('.view-event-btn').click(function(e) {
     e.preventDefault();
     var eventID = $(this).data("cid");
+    stopUpdateEvents();
     getEventViewAjax(eventID);
     /*$.ajax({
         url: 'event_view_ajax.php',
