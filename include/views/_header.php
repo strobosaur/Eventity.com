@@ -25,10 +25,11 @@
 
 <body>
     <nav id="nav-menu" name="nav-menu">
-        <script>getMenuAjax();</script>
+        <div id="header-mid">
+            <script>getMenuAjax();</script>
+        </div>
     </nav>
     <div id="background-box">
-
     </div>
 
     <div class="message-bar" id="message-bar">

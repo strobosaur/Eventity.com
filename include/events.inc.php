@@ -223,6 +223,7 @@ function countAttendees($eventID){
 function makeEventListItem($row){
 
     $creator = userExists($row['event_userID']);
+    $profileImg = fetchProfileImg($creator['email']);
 
     $evtID = $row['eventID'];
     $evtUname = $creator['uname'];
@@ -232,6 +233,14 @@ function makeEventListItem($row){
     $evtDate = $row['event_date'];
     $evtTime = $row['event_time'];
     $evtPrice = $row['event_price'];
+
+    if(($evtPrice <= 0) || ($evtPrice == null)){
+        $evtPrice = "FREE!";
+    }
+
+    if($evtCity != null){
+        $evtCity = "Location: " . $evtCity;
+    }
 
     // CREATE EVENT ITEM
     $event =
@@ -249,15 +258,24 @@ function makeEventListItem($row){
         }
 
         $event .=
-            '<p>' . $evtText . '</p>
-            <small>Date: ' . $evtDate . '</small>';
+            '<p>' . $evtText . '</p>';
 
             if(isset($_SESSION['userID'])){
                 $event .=
-                '<small>Host: ' . $evtUname . '</small>
-                <small>Time: ' . $evtTime . '</small>
-                <small>Location: ' . $evtCity . '</small>
-                <small>Price: ' . $evtPrice . '</small>';
+                '<div class="event-list-low">
+                    <div class="event-list-lowleft">
+                        <img id="profile-img2" src="' . $profileImg . '" width="40px" height="40px">
+                        <small>Created by: <br>' . $evtUname . '</small>
+                    </div>
+                    <div class="event-list-lowmid">
+                        <small>Date: ' . $evtDate . '<br>
+                            Time: ' . $evtTime . '</small>
+                    </div>
+                    <div class="event-list-lowright">
+                        <small>' . $evtCity . '<br>
+                        Price: ' . $evtPrice . '</small>
+                    </div>
+                </div>';
             }
 
             $event .=

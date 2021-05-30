@@ -18,15 +18,6 @@ if(!isset($_POST['get_side_menu']) || !isset($_SESSION['userID'])){
     '<div class="container" id="menu-container">
 
         <div class="header" id="menu-header">
-            <h2>Logged in as:</h2>
-        </div>
-
-        <div class="profile-view-top2" id="profile-view-top2">
-            <img id="profile-img2" src="' . $profileImg . '" width="48px" height="48px">
-            <h3 id="profile-h3">' . $uname . '</h3>    
-        </div>
-
-        <div class="header" id="menu-header">
             <h2>Menu</h2>
         </div> 
 
