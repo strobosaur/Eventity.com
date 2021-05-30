@@ -101,6 +101,29 @@ function getRegisterAjax(){
     });
 }
 
+// FUNCTION SEARCH POST FORM
+function getProfileAjax(){
+    $.ajax({
+        url: 'profile_ajax.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            'get_profile': 1,
+        },
+        success: function(response){
+            console.log(response.left);
+            console.log(response.right);
+            stopUpdateEvents();
+            $('#left-field').empty();
+            $('#left-field').append(response.left);
+            $('#event-list').empty();
+            $('#event-list').append(response.right);
+            $.getScript("./js/profile_img_update.js");
+            $.getScript("./js/profile_img_delete.js");
+        }
+    });
+}
+
 // FUNCTION GET REGISTER FORM
 function getSideMenuAjax(){
     $.post("side_menu_ajax.php", function(data){

@@ -89,20 +89,6 @@ function userExists($userID){
         return false;
     }
 }
-
-// FUNCTION FETCH PROFILE IMG
-function fetchProfileImg($userID) {
-    $result = userExists($userID);
-    if ($result !== false) {
-        if ($result['profileImg'] != null) {
-            return $result['profileImg'];
-        } else {
-            return './img/default_profile_img.png';
-        }
-    } else {
-        return './img/default_profile_img.png';
-    }
-}
     
 // FUNCTION LOGIN USER TO SITE
 function loginUser($userID, $password){
@@ -111,15 +97,11 @@ function loginUser($userID, $password){
     $userData = userExists($userID);
 
     if ($userData === false) {
-        //header("location: ./index.php?error=nouser");
-        //exit();
         return false;
     }
 
     // CHECK PASSWORD MATCH
     if (passwordMatchesDB($userID, $password) === false) {
-        //header("location: ./index.php?error=wrongpwd");
-        //exit();
         return false;
     } else {
 
@@ -189,16 +171,19 @@ function registerUser($uname,$email,$pwd1,$pwd2){
 
         // EXECUTE DB QUERY
         if($stmt->execute()) {
-            $result = userExists($emailValue);
+            $userData = userExists($emailValue);
             $db->close();
 
-            // SET SESSION VARIABLES
+            // START SESSION & SESSION VARIABLES
             session_start();
-            $_SESSION['userID'] = $result['userID'];
-            $_SESSION['uname'] = $result['uname'];
-            $_SESSION['email'] = $result['email'];
-            $_SESSION['account_type'] = $result['account_type'];
-            $_SESSION['logged_in'] = true;
+    
+            $_SESSION["userID"] = $userData['userID'];
+            $_SESSION["user_fname"] = $userData['fname'];
+            $_SESSION["user_lname"] = $userData['lname'];
+            $_SESSION["user_uname"] = $userData['uname'];
+            $_SESSION["user_email"] = $userData['email'];
+            $_SESSION['account_type'] = $userData['account_type'];
+            $_SESSION["logged_in"] = true;
 
             return true;
         } else {
@@ -316,11 +301,18 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     // EXECUTE STATEMENT
     if ($stmt->execute()){
 
-        // UPDATE SESSION
-        $_SESSION["user_fname"] = $userFnameValue;
-        $_SESSION["user_lname"] = $userLnameValue;
-        $_SESSION["user_uname"] = $userUnameValue;
-        $_SESSION["user_email"] = $userEmailValue;
+        $userData = userExists($userID);
+        
+        // START SESSION & SESSION VARIABLES
+        session_start();
+
+        $_SESSION["userID"] = $userData['userID'];
+        $_SESSION["user_fname"] = $userData['fname'];
+        $_SESSION["user_lname"] = $userData['lname'];
+        $_SESSION["user_uname"] = $userData['uname'];
+        $_SESSION["user_email"] = $userData['email'];
+        $_SESSION['account_type'] = $userData['account_type'];
+        $_SESSION["logged_in"] = true;
 
         $db->close();
         return true;
@@ -370,11 +362,10 @@ function uploadProfileImg($userID,$fileName,$fileTmpName,$fileError) {
     // CHECK IF USER EXISTS
     $result = userExists($userID);
 
-
     $fileExt = end(explode('.', strtolower($fileName)));
 
     // ALLOWED FILETYPES
-    $allowedExtArr = array('jpg', 'jpeg', 'png');
+    $allowedExtArr = array('jpg', 'jpeg', 'png', 'gif');
 
     if (in_array($fileExt, $allowedExtArr)) {
         if (($fileError === 0) && ($result !== false)) {
@@ -403,7 +394,7 @@ function changeProfileImg($userID, $filePath) {
 
     // DELETE OLD IMAGE IF EXISTS
     if ($result != false) {
-        $oldProfileImg = $result['profileImg'];
+        $oldProfileImg = $result['profile_img'];
 
         if ($oldProfileImg != null) {
             unlink($oldProfileImg);
@@ -429,6 +420,20 @@ function changeProfileImg($userID, $filePath) {
             $db->close();
             return false;
         }
+    }
+}
+
+// FUNCTION FETCH PROFILE IMG
+function fetchProfileImg($userID) {
+    $result = userExists($userID);
+    if ($result !== false) {
+        if ($result['profile_img'] != null) {
+            return $result['profile_img'];
+        } else {
+            return './img/default_profile_img.png';
+        }
+    } else {
+        return './img/default_profile_img.png';
     }
 }
 

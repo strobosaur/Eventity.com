@@ -104,6 +104,63 @@ ul li a:hover {
     padding: 30px;
 }
 
+.profile-view-top {
+    line-height: 96px;
+    text-align: justify;
+    display: flex;
+    flex-flow: row;
+    padding: 8px 0px;
+    margin: 0;
+    width: auto;
+    height: auto;
+    border-bottom: 3px solid var(--text1);
+}
+
+.profile-view-top img {
+    margin: 0;
+    display:inline-block;
+    max-width: 96px;
+    max-width: 96px;
+    border-radius:48px;
+}
+
+.profile-view-top h3 {
+    color: inherit;
+    padding: 0px 10px;
+    margin: 0;
+    width: auto;
+    display: inline-block;
+}
+
+.profile-view-main {
+    margin: 0;
+    background-color: var(--container2);
+    border-radius: 8px;
+    padding: 10px 0;
+    width: auto;
+    display: flex;
+    line-height: 2;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profile-view-main .left-column {
+    font-size: 14px;
+    width: 30%;
+    text-align: right;
+    line-height: inherit;
+    display: inline-block;
+}
+
+.profile-view-main .right-column {
+    font-size: 14px;
+    color: var(--text2);
+    width: 70%;
+    padding-left: 10px;
+    line-height: inherit;
+    display: inline-block;
+}
+
 .event-view-box {
     min-width: 600px;
     max-width: 600px;
