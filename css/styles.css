@@ -7,6 +7,7 @@
 :root {
     --background1: #501F3A;
     --background2: #0F292F;
+    --background3: #1f4443;
     --decoration1: #CB2D6F;
     --text1: #14A098;
     --text2: #CCCCCC;
@@ -113,7 +114,7 @@ ul li a:hover {
     margin: 0;
     width: auto;
     height: auto;
-    border-bottom: 3px solid var(--text1);
+    border-bottom: 3px solid var(--background3);
 }
 
 .profile-view-top img {
@@ -168,9 +169,9 @@ ul li a:hover {
 
 .header {
     margin: 0;
-    padding: 20px 20px;
+    padding: 0px 20px 20px 20px;
     color: inherit;
-    border-bottom: 3px solid #1f4443;
+    border-bottom: 3px solid var(--background3);
 }
 
 .form {
@@ -268,7 +269,7 @@ button {
     padding: 10px;
     font-size: 16px;
     font-family: inherit;
-    margin-bottom: 24px;
+    /*margin-bottom: 24px;*/
     cursor: pointer;
 }
 
@@ -459,6 +460,20 @@ button:hover {
 
 #indoors-label{
     display: block;
+}
+
+#file-upload {
+    padding:0;
+}
+
+#form-submit-image {
+    padding: 0;
+    padding-top: 20px;
+}
+
+#delete-profile-image {
+    padding: 0;
+    padding-top: 20px;
 }
 
 /* Base for label styling */

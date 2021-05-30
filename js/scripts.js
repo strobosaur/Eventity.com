@@ -111,8 +111,6 @@ function getProfileAjax(){
             'get_profile': 1,
         },
         success: function(response){
-            console.log(response.left);
-            console.log(response.right);
             stopUpdateEvents();
             $('#left-field').empty();
             $('#left-field').append(response.left);

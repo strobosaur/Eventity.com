@@ -50,7 +50,7 @@ if(!isset($_POST['get_profile']) || !isset($_SESSION['userID'])) {
             
             <form class="form" id="form-submit-img" name="form-submit-img" action="register_img_process.php" method="POST" enctype="multipart/form-data">
 
-                <div class="form-control">
+                <div class="form-control" id="file-upload">
                 <input class="custom-file-upload" type="file" name="file" id="file">
                 <small>Error message</small>
                 </div>
