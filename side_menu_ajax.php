@@ -1,19 +1,21 @@
 <?php
+
+// SECURITY
+if(!isset($_POST['get_side_menu'])){
+    header("location: index.php");
+    exit();
+} else {
+
+    // MAKE SIDE MENU HTML
 $sideMenu =
-'<div class="container" id="menu-container">
-    <div class="header" id="menu-header">
-        <h2>Menu</h2>
-    </div>
+    '<div class="container" id="menu-container">
+        <div class="header" id="menu-header">
+            <h2>Menu</h2>
+        </div>
 
-    <form class="form" id="side-menu-form" action="event_create.php" method="POST">
+        <button type="submit" name="create-event-btn" id="create-event-btn">Create new event</button>
+    </div>';
 
-    <button type="submit" name="create-event-btn" id="create-event-btn">Create new event</button>
-
-    </form>
-    
-    <div class="success-message" id="success-message">
-        <h4 id="message"></h4>
-    </div>
-</div>';
-echo $sideMenu;
+    echo $sideMenu;
+}
 ?>

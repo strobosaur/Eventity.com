@@ -28,7 +28,7 @@ body {
     height: 100%;
     min-width:1200px;
     min-height:1080px;
-    background-image: url("../img/background.png");
+    background-image: url("../img/background2.png");
     background-size: 125%;
     position:fixed;
     top:0;
@@ -94,13 +94,22 @@ ul li a:hover {
     padding: 0;
 }
 
+#mid-column {
+    margin: 0 auto;
+    padding-top: 48px;
+    width: 960px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row;
+}
+
 .left-field {
     display: block;
     position: fixed;
     min-height: 100vh;
-    margin: 48px 0 0 0;
-    width:360px;
-    height:auto;
+    margin: 0 600px 0 auto;
+    width: 360px;
+    height: auto;
 }
 
 .event-list {
@@ -108,8 +117,8 @@ ul li a:hover {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    max-width: calc(100% - 360px);
-    padding-top: 48px;
+    /*max-width: calc(100% - 360px);*/
+    width: 600px;
 }
 
 .container {    
@@ -289,7 +298,7 @@ button {
     padding: 10px;
     font-size: 16px;
     font-family: inherit;
-    /*margin-bottom: 24px;*/
+    margin: 20px 0;
     cursor: pointer;
 }
 

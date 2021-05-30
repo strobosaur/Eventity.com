@@ -32,9 +32,6 @@ function setErrorMessage(input, msg){
 }
 
 // FUNCTION UPDATE EVENT LIST
-
-
-// FUNCTION UPDATE POSTS
 function updateEventListAjax(){
     $.ajax({
         url: 'event_list_ajax.php',
@@ -124,9 +121,17 @@ function getProfileAjax(){
 
 // FUNCTION GET REGISTER FORM
 function getSideMenuAjax(){
-    $.post("side_menu_ajax.php", function(data){
-        $("#left-field").empty();
-        $("#left-field").append(data);
+    $.ajax({
+        url: 'side_menu_ajax.php',
+        type: 'POST',
+        data: {
+            'get_side_menu': 1,
+        },
+        success: function(response){
+            $("#left-field").empty();
+            $("#left-field").append(response);
+            $.getScript("./js/side_menu_action.js");
+        }
     });
 }
 
