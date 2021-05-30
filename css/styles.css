@@ -5,24 +5,41 @@
 }
 
 :root {
-    --background1: #501F3A;
-    --background2: #0F292F;
-    --background3: #1f4443;
-    --decoration1: #CB2D6F;
-    --text1: #14A098;
-    --text2: #CCCCCC;
+    /*#46344E*/
+    --background1:  rgba(70,52,78, 0.8);
+    /*--background2: #0F292F;*/
+    --background2: rgba(90,85,96,0.3);
+    --background3: rgba(90,85,96,0.6);
+    --background4: #1f4443;
+    --decoration1: #9D8D8F;
+    /*--text1: #9D8D8F;*/
+    --text1: #C4B5B7;
+    --text2: #ECD50F;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--background1);
+    /*background-color: var(--background1);*/
     color: var(--text1);
+}
+
+#background-box {
+    width: 100vw;
+    height: 100%;
+    min-width:1200px;
+    min-height:1080px;
+    background-image: url("../img/background.png");
+    background-size: 125%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index: -100;
 }
 
 nav {
     width: 100%;
     height: 48px;
-    background-color: var(--background2);
+    background-color: black;
     position: fixed;
     display: block;
     margin: 0;
@@ -50,8 +67,9 @@ ul li a {
 }
 
 ul li a:hover {
-    background-color: var(--background2);
+    background-color: var(--background1);
     filter: brightness(150%);
+    color: var(--text2);
 }
 
 .message-bar {
@@ -96,6 +114,7 @@ ul li a:hover {
 
 .container {    
     display: block; 
+    /*background-color: var(--background2);*/
     background-color: var(--background2);
     border-radius: 8px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
@@ -103,6 +122,7 @@ ul li a:hover {
     width:fit-content;
     margin: 16px;
     padding: 30px;
+    /*opacity: 50%;*/
 }
 
 .profile-view-top {
@@ -170,7 +190,7 @@ ul li a:hover {
 .header {
     margin: 0;
     padding: 0px 20px 20px 20px;
-    color: inherit;
+    color: var(--text2);
     border-bottom: 3px solid var(--background3);
 }
 
@@ -260,9 +280,9 @@ ul li a:hover {
 }
 
 button {
-    background-color: var(--text1);
-    border: 2px solid var(--text1);
-    color: var(--background2);
+    background-color: var(--background3);
+    border: 2px solid var(--background1);
+    color: var(--text1);
     display: block;
     width: 100%;
     border-radius: 8px;
@@ -274,7 +294,7 @@ button {
 }
 
 button:hover {
-    filter: brightness(150%);
+    filter: brightness(125%);
 }
 
 .form-control.success input {
@@ -343,7 +363,7 @@ button:hover {
     background: none;
     cursor: pointer;
     font-family: inherit;
-    color: var(--text1);
+    color: var(--text2);
     padding: 16px 32px;
     margin: 0px;
     display: inline-block;
@@ -354,7 +374,8 @@ button:hover {
 }
 
 .link-btn:hover {
-    filter:brightness(150%);
+    filter:brightness(125%);
+    color: var(--text1)
 }
 
 .link-btn-small {
@@ -363,7 +384,7 @@ button:hover {
     background: none;
     cursor: pointer;
     font-family: inherit;
-    color: var(--text1);
+    color: var(--text2);
     padding: 16px 32px;
     margin: 0px;
     display: inline-block;
@@ -373,8 +394,9 @@ button:hover {
 }
 
 .link-btn-small:hover {
-    filter:brightness(150%);
-    text-shadow: 3px 3px 3px black;
+    filter:brightness(125%);
+    color: var(--text1);
+    text-decoration: underline;
 }
 
 .event-item-header {
@@ -386,7 +408,7 @@ button:hover {
     width: 100%;
     font-size: 20px;
     display: inline-block;
-    color: var(--text1);
+    color: var(--text2);
     margin: 0;
     padding: 16px 0;
     text-align: center;
@@ -398,9 +420,9 @@ button:hover {
     margin: 0;
     display: block;
     width: auto;
-    background-color: var(--background2);
+    background-color: var(--background3);
     border-radius: 8px;
-    border: 3px solid var(--decoration1);
+    border: 2px solid var(--decoration1);
     font-size: 14px;
     margin-bottom: 16px;
 }
@@ -437,7 +459,7 @@ button:hover {
     margin: 0;
     display: block;
     width: auto;
-    background-color: var(--background2);
+    background-color: var(--background3);
     border-radius: 8px;
     border: 3px solid var(--decoration1);
     font-size: 14px;
