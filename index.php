@@ -1,18 +1,21 @@
 <?php
     include_once './include/views/_header.php';
 ?>
+<div id="mid-column">
 
-<div class="left-field" id="left-field">
-    <?php
-        if(!isset($_SESSION['userID'])){
-            echo "<script>getLoginAjax();</script>";
-        } else {            
-            echo "<script>getSideMenuAjax();</script>";
-        }
-    ?>
-</div>
+    <div class="left-field" id="left-field">
+        <?php
+            if(!isset($_SESSION['userID'])){
+                echo "<script>getLoginAjax();</script>";
+            } else {            
+                echo "<script>getSideMenuAjax();</script>";
+            }
+        ?>
+    </div>
 
-<div class="event-list" id="event-list">
+    <div class="event-list" id="event-list">
+    </div>
+
 </div>
 
 <?php

@@ -19,6 +19,8 @@ if (!isset($_POST['update_events'])){
         $eventList .= makeEventListItem($row);
     }
 
+    $db->close();
+
     // POST EVENT LIST
     echo $eventList;
 }
