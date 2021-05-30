@@ -26,6 +26,9 @@
     <nav id="nav-menu" name="nav-menu">
         <script>getMenuAjax();</script>
     </nav>
+    <div id="background-box">
+        
+    </div>
 
     <div class="message-bar" id="message-bar">
     </div>
