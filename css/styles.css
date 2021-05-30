@@ -211,7 +211,7 @@ ul li a:hover {
 .form-event {
     padding: 20px 0;
     color: inherit;
-    width: 600px;
+    width: 508px;
 }
 
 .form-event .form-left {
@@ -366,7 +366,28 @@ button:hover {
     display: block;
 }
 
+.view-event-form {
+    width: auto;
+    display: block;
+}
+
 .link-btn {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text2);
+    padding: 16px 32px;
+    margin: 0px;
+    display: inline-block;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    width: 100%;
+}
+
+.view-event-btn {
     border: none;
     outline: none;
     background: none;

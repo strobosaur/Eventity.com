@@ -12,10 +12,12 @@ $('#create-event-form').submit(function(e){
         contentType: false,
         processData: false,
         success: function(response){
-            if (response !== false) {
+            console.log(response);
+            if (response == "true") {
                 getSideMenuAjax();
                 updateEventListAjax();
                 setTopBarMessage("Event created")
+                startUpdateEvents();
             } else {
                 setTopBarMessage("Event create failed")
             }

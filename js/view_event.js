@@ -1,7 +1,7 @@
 // SEND POST TO DATABASE
-$('#form-view-event-btn').submit(function(e) {
+$('.view-event-btn').click(function(e) {
     e.preventDefault();
-    var eventID = $("#eventID").val();
+    var eventID = $(this).data("cid");
     getEventViewAjax(eventID);
     /*$.ajax({
         url: 'event_view_ajax.php',
