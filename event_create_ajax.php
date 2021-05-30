@@ -37,7 +37,7 @@ $eventCreateBox =
 
                 <div class="form-control">
                 <label>Start date</label>
-                <input type="date" name="evt_sdate" id="evt_sdate" min="<?=date("Y-m-d")?>" required>
+                <input type="date" name="evt_sdate" id="evt_sdate" min="' . date("Y-m-d") . '" required>
                 <span></span>
                 <small>Error message</small>
                 </div>                    

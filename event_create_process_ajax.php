@@ -33,16 +33,16 @@
         $db = new SQLite3("./db/db.db");
 
         $sql = "INSERT INTO events (event_userID, event_name, event_text, event_indoors, event_adress, event_lat, event_lng, event_date, event_time, event_price, adminOK)
-                VALUES (:event_userID, :event_name, :event_text, :event_indoors, :event_adress,, :event_lat, :event_lng, :event_date, :event_time, :event_price, adminOK)";
+                VALUES (:event_userID, :event_name, :event_text, :event_indoors, :event_adress, :event_lat, :event_lng, :event_date, :event_time, :event_price, :adminOK)";
 
         $stmt = $db->prepare($sql);
 
         // BIND PARAMETERS
-        $stmt->bindParam(":event_userID", $evtUserID, SQLITE3_INTEGER);
+        $stmt->bindValue(":event_userID", $evtUserID, SQLITE3_INTEGER);
         $stmt->bindParam(":event_name", $evtName, SQLITE3_TEXT);
         $stmt->bindParam(":event_text", $evtText, SQLITE3_TEXT);
 
-        $stmt->bindParam(":event_indoors", $evtIndoors, SQLITE3_TEXT);
+        $stmt->bindValue(":event_indoors", $evtIndoors, SQLITE3_INTEGER);
 
         $stmt->bindParam(":event_adress", $evtAdress, SQLITE3_TEXT);
         
@@ -52,15 +52,15 @@
         $stmt->bindParam(":event_date", $evtStartDate, SQLITE3_TEXT);
         $stmt->bindParam(":event_time", $evtStartTime, SQLITE3_TEXT);
 
-        $stmt->bindParam(":event_price", $evtPrice, SQLITE3_INTEGER);
+        $stmt->bindValue(":event_price", $evtPrice, SQLITE3_INTEGER);
 
-        $stmt->bindParam(":adminOK", 0, SQLITE3_INTEGER);
+        $stmt->bindValue(":adminOK", 0, SQLITE3_INTEGER);
 
         // REGISTER USER
         if($stmt->execute()) {
-            echo true;
+            echo "true";
         } else {
-            echo false;
+            echo "false";
         }
     }
 ?>

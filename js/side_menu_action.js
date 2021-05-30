@@ -11,6 +11,7 @@ $("#create-event-btn").click(function(e){
             stopUpdateEvents();
             $("#event-list").empty();
             $("#event-list").append(response);
+            $.getScript("./js/create_event.js");
         }
     })
 })

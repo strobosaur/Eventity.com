@@ -165,7 +165,7 @@ function removeAttendee($eventID, $userID) {
 
     // PREPARE QUERY
     $db = new SQLite3("./db/db.db");
-    
+
     $sql = "DELETE FROM attending 
             WHERE eventID = :eventID 
             AND userID = :userID";
@@ -240,10 +240,7 @@ function makeEventListItem($row){
 
         if(isset($_SESSION["userID"])){
             $event .=
-            '<form class="form-link-btn" id="form-view-event-btn" name="form-view-event-btn" action="event_view.php" method="POST">
-                <input type="hidden" value="' . $evtID . '" id="eventID" name="eventID">
-                <button class="link-btn" type="submit" name="view-event-btn" id="view-event-btn">' . $evtName . '</button>
-            </form>';
+                '<button class="view-event-btn" type="submit" data-cid="' . $evtID . '" name="view-event-btn" id="view-event-btn">' . $evtName . '</button>';
         } else {
             $event .= 
             '<div class="event-item-header" id="event-item-header">
