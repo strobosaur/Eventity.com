@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    //session_start();
     
     if(!isset($_POST['login'])) {
         header("location: index.php");
@@ -14,9 +14,9 @@
 
         // LOGIN USER
         if(loginUser($_POST['login_name'], $_POST['login_pwd'])) {
-            echo $_SESSION['profile_img'];
+            echo "true";
         } else {
-            echo false;
+            echo "false";
         }
     }
 ?>

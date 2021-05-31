@@ -18,6 +18,8 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     $userID = $userData['userID'];
     $userUname = $userData['uname'];
 
+    $viewerID = $viewerData['userID'];
+
     $eventID = $eventData["eventID"];
     $eventName = $eventData["event_name"];
     $eventText = $eventData["event_text"];
@@ -97,23 +99,23 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
 
             <div id="event-view-low">';
 
-            if (isAttending($eventID, $userID)){
-                $eventView .=
-                '<form class="form-link-btn" id="form-remove-attend-btn" action="event_attend.php" method="POST">
-
-                    <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
-                    <input type="hidden" value="' . $userID . '" id="attendingID" name="attendingID">
-
-                    <button type="submit" name="remove-attend-btn" id="remove-attend-btn">Don´t attend</button>
-                </form>';
-            } else {
+            if (isAttending($eventID, $viewerID) == false){
                 $eventView .=
                 '<form class="form-link-btn" id="form-event-attend-btn" action="event_attend.php" method="POST">
 
                     <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
-                    <input type="hidden" value="' . $userID . '" id="attendingID" name="attendingID">
+                    <input type="hidden" value="' . $viewerID . '" id="attendingID" name="attendingID">
 
                     <button type="submit" name="event-attend-btn" id="event-attend-btn">Attend</button>
+                </form>';
+            } else {
+                $eventView .=
+                '<form class="form-link-btn" id="form-remove-attend-btn" action="event_attend.php" method="POST">
+
+                    <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
+                    <input type="hidden" value="' . $viewerID . '" id="attendingID" name="attendingID">
+
+                    <button type="submit" name="remove-attend-btn" id="remove-attend-btn">Don´t attend</button>
                 </form>';
             }
 

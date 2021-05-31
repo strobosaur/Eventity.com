@@ -8,7 +8,7 @@ async function getWeatherDate(latt,long,sdate,hour){
     var roundLatt = Number((parseFloat(latt)).toFixed(4));
     var roundLong = Number((parseFloat(long)).toFixed(4));
     
-    // FETCH WEATHER DATA FOR INPUT LOCATION
+    // FETCH WEATHER DATA FOR INPUT
     const response = await fetch(weatherAPI + 'lat=' + roundLatt + '&lon=' + roundLong + '');
     const parsed = await response.json();
 
