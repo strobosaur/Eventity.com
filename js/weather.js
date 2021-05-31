@@ -1,48 +1,30 @@
-// API ADRESS
-const weatherAPI = 'https://api.met.no/weatherapi/locationforecast/2.0/compact?';
+// GET WEATHER FROM WEATHERBIT
+async function getWeatherDate(latt, long){
+    const APIurl = "https://api.weatherbit.io/v2.0/current?lat=";
+    const APIkey = "001ede011a474ab28fd702029b5877c3";
 
-// FUNCTION GET WEATHER DATA FROM API
-async function getWeatherDate(latt,long,sdate,hour){
-
-    // ROUND COORDINATES TO 4 DECIMALS (REQUIRED BY API)
+    // ROUND COORDINATES TO 4 DECIMALS
     var roundLatt = Number((parseFloat(latt)).toFixed(4));
     var roundLong = Number((parseFloat(long)).toFixed(4));
-    
-    // FETCH WEATHER DATA FOR INPUT
-    const response = await fetch(weatherAPI + 'lat=' + roundLatt + '&lon=' + roundLong + '');
-    const parsed = await response.json();
 
-    // MAKE ARRAY WITH ONLY WEATHER FORECAST
-    var daysArr = parsed.properties.timeseries;
+    url = APIurl + roundLatt + "&lon=" + roundLong + "&key=" + APIkey;
+    const raw = await fetch(url);
+    const response = await raw.json();
 
-    // ITERATE ARRAY AND LOOK FOR THE DATE MATCHING THE INPUT
-    for(var i = 0; i < daysArr.length; i++){
+    var temperature = response.data[0].temp;
+    var temperature_app = response.data[0].app_temp;
+    var windspeed = response.data[0].wind_spd;
+    var rainmm = response.data[0].precip;
+    var snowmm = response.data[0].snow;
+    var description = response.data[0].weather.description;
 
-        // SHORTEN WEATHER DATA TIME STRING
-        var time = daysArr[i].time.substr(0,13);
+    var returnArr = {temp: temperature,
+                    temp_app: temperature_app,
+                    wind: windspeed,
+                    rain: rainmm,
+                    snow: snowmm,
+                    desc: description
+                }
 
-        // SPLIT WEATHER DATA TIME STRING (DATE / HOUR)
-        var dateTime = time.split("T");
-
-        // IF DATE MATCH FOUND...
-        if((dateTime[0] == sdate) && (dateTime[1] == hour)){
-
-            var weatherHour = daysArr[i];
-
-            var temperature = weatherHour.data.instant.details.air_temperature;
-            var windspd = weatherHour.data.instant.details.wind_speed;
-            var rainmm = weatherHour.data.next_1_hours.details.precipitation_amount;
-            var description = weatherHour.data.next_12_hours.summary.symbol_code;
-            
-            // CREATE ARRAY WITH TEMPERATURE, WIND SPEED, RAIN, AND GENERAL INFO
-            var returnArr = {temp: temperature,
-                            wind: windspd,
-                            rain: rainmm,
-                            desc: description};
-
-            return returnArr;
-        }
-    }
-
-    return false;
+    return returnArr;
 }
