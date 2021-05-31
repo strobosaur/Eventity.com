@@ -8,7 +8,9 @@
         require_once './include/events.inc.php';
 
         if(deleteEvent($_POST['eventID'])){
-            
+            echo "true";
+        } else {
+            echo "false";
         }
     }
 ?>

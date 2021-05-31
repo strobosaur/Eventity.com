@@ -1,7 +1,8 @@
 // ADMIN APPROVE EVENT BUTTON
-$("#event-admin-deny-btn").click(function(e){
+$(".event-admin-deny-btn").click(function(e){
     e.preventDefault;
     var cid = $(this).data('cid');
+    console.log(cid);
 
     $.ajax({
         url: "event_delete_process_ajax.php",
@@ -11,7 +12,7 @@ $("#event-admin-deny-btn").click(function(e){
             "eventID": cid,
         },
         success: function(response){
-            if(response == "true"){
+            if(response != "false"){
                 updateEventListAdmin();
                 setTopBarMessage("Event removed");
             } else {
@@ -22,9 +23,10 @@ $("#event-admin-deny-btn").click(function(e){
 })
 
 // ADMIN APPROVE EVENT BUTTON
-$("#event-admin-ok-btn").click(function(e){
+$(".event-admin-ok-btn").click(function(e){
     e.preventDefault;
     var cid = $(this).data('cid');
+    console.log(cid);
 
     $.ajax({
         url: "admin_event_approve_ajax.php",
@@ -34,7 +36,8 @@ $("#event-admin-ok-btn").click(function(e){
             "eventID": cid,
         },
         success: function(response){
-            if(response == "true"){
+            console.log(response);
+            if(response != "false"){
                 updateEventListAdmin();
                 setTopBarMessage("Event approved");
             } else {

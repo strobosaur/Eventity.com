@@ -10,7 +10,8 @@ function updateEventListAdmin(){
             $("#event-list").empty();
             $("#event-list").append('<div class="container"><div class="header"><h2>Events awaiting approval</h2></div></div>');
             $("#event-list").append(response);
-            $.getScript("./admin/js/admin_view_event.js");
+            $.getScript("./js/view_event.js");
+            $.getScript("./admin/js/admin_event_actions.js");
         }
     });
 }
@@ -28,6 +29,7 @@ function getSideMenuAdmin(){
             $("#left-field").append(response);
             $.getScript("./admin/js/admin_event_list.js");
             $.getScript("./admin/js/admin_user_list.js");
+            $.getScript("./admin/js/admin_event_actions.js");
         }
     });
 
