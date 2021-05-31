@@ -18,8 +18,6 @@ if (!isset($_POST['admin_update_events']) || !($_SESSION['account_type'] >= 1)){
     // CREATE EVENT LIST
     $eventList = '';
 
-    $eventList .= '<div class="header"><h2>Events awaiting approval</h2></div>';
-
     // LOOOP THROUGH QUERY
     while ($row = $result->fetchArray()){
         $eventList .= makeAdminListItem($row);

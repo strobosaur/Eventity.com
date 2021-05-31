@@ -8,6 +8,7 @@ function updateEventListAdmin(){
         },
         success: function(response){
             $("#event-list").empty();
+            $("#event-list").append('<div class="container"><div class="header"><h2>Events awaiting approval</h2></div></div>');
             $("#event-list").append(response);
             $.getScript("./admin/js/admin_view_event.js");
         }
