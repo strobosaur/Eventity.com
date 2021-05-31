@@ -44,7 +44,22 @@ function makeAdminListItem($row){
 
     // POST ITEM
     echo $event;
+}
 
+// FUNCTION APPROVE EVENT
+function approveEvent($eventID){
+    $db = new SQLite3("./db/db.db");
+    $sql = "UPDATE events
+            SET adminOK = :adminOK
+            WHERE eventID = :eventID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":adminOK", 1, SQLITE3_INTEGER);
+    $stmt->bindValue(":eventID", $eventID, SQLITE3_INTEGER);
+    if($stmt->execute()){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 ?>

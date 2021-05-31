@@ -112,7 +112,7 @@ function deleteEvent($eventID)
             unlink($row['img_path']);
         }
 
-        //PREPARE DB QUERY IMAGE DELETE
+        // PREPARE DB QUERY IMAGE DELETE
         $sql = "DELETE * FROM event_img WHERE eventID = :eventID";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':eventID', $eventID, SQLITE3_INTEGER);
@@ -128,10 +128,10 @@ function deleteEvent($eventID)
         // EXECUTE QUERY
         if ($stmt->execute()) {
             $db->close();
-            exit();
+            echo "true";
         } else {
             $db->close();
-            exit();
+            echo "false";
         }
     }
 }
