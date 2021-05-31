@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if(!isset($_POST['event-approve'])){
     header("location: index.php");

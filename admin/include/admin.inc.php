@@ -53,8 +53,8 @@ function approveEvent($eventID){
             SET adminOK = :adminOK
             WHERE eventID = :eventID";
     $stmt = $db->prepare($sql);
+    $stmt->bindParam(":eventID", $eventID, SQLITE3_INTEGER);
     $stmt->bindValue(":adminOK", 1, SQLITE3_INTEGER);
-    $stmt->bindValue(":eventID", $eventID, SQLITE3_INTEGER);
     if($stmt->execute()){
         return true;
     } else {

@@ -105,15 +105,15 @@ function deleteEvent($eventID)
 
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':eventID', $eventID, SQLITE3_INTEGER);
-        $resultImg = $stmt->execute();
-
-        // DELETE IMAGE FILES
-        while ($row = $resultImg->fetchArray()){
-            unlink($row['img_path']);
+        if($resultImg = $stmt->execute()){
+            // DELETE IMAGE FILES
+            while ($row = $resultImg->fetchArray()){
+                unlink($row['img_path']);
+            }
         }
 
         // PREPARE DB QUERY IMAGE DELETE
-        $sql = "DELETE * FROM event_img WHERE eventID = :eventID";
+        $sql = "DELETE FROM event_img WHERE eventID = :eventID";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':eventID', $eventID, SQLITE3_INTEGER);
 
@@ -128,10 +128,10 @@ function deleteEvent($eventID)
         // EXECUTE QUERY
         if ($stmt->execute()) {
             $db->close();
-            echo "true";
+            return true;
         } else {
             $db->close();
-            echo "false";
+            return false;
         }
     }
 }
