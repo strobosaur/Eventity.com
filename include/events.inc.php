@@ -196,7 +196,7 @@ function isAttending($eventID,$userID){
     $stmt->bindValue(":userID", $userID, SQLITE3_INTEGER);
     $result = $stmt->execute();
     if($row = $result->fetchArray()){
-        return $row;
+        return true;
     } else {
         return false;
     }
@@ -284,6 +284,28 @@ function makeEventListItem($row){
 
     // POST ITEM
     echo $event;
+}
+
+// FUNCTION GET WEATHER
+function getWeatherDatePHP($latt,$long,$date,$hour){
+
+    // ROUND COORDINATES TO 4 DECIMALS (REQUIRED BY API)
+    $lattRound = round($latt, 4);
+    $longRound = round($long, 4);
+
+    // API ADRESS
+    $url = 'https://api.met.no/weatherapi/locationforecast/2.0/compact?';
+    $urlFull = $url . 'lat=' . $lattRound . '&lon=' . $longRound . '';
+
+    // PREPARE REQUEST
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_HTTPGET, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_USERAGENT, "strobosaur@gmail.com, https://github.com/strobosaur/Project_PG19, Uppsala University");
+    $response_json = curl_exec($ch);
+    curl_close($ch);
+    $response=json_decode($response_json, true);
+
 }
 
 ?>

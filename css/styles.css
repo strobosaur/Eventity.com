@@ -91,6 +91,11 @@ ul li a:hover {
     position: fixed;
 }
 
+.message-bar p{
+    background-color: none;
+    border: none;
+}
+
 .message-bar .message {  
     display: inline-block;
     line-height: 48px;
@@ -136,7 +141,6 @@ ul li a:hover {
     border-radius: 8px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
     overflow: hidden;
-    width:fit-content;
     margin: 16px;
     padding: 30px;
     /*opacity: 50%;*/
@@ -556,7 +560,7 @@ button:hover {
     text-align: center;
 }
 
-p {
+#mid-column p {
     color: var(--text1);
     padding: 20px 20px;
     margin: 0;

@@ -73,6 +73,8 @@ function getEventViewAjax(eventID){
             $('#event-list').append(response.view);
             $.getScript('./js/attend_event.js');
 
+            console.log(getWeatherDate(response.lat, response.lng,response.date,response.hour));
+
             // GET WEATHER DATA
             var weatherArr = await getWeatherDate(response.lat,response.lng,response.sdate,response.hour);
             $("#event-view-lowmid").append('<div id="weather-box"></div>');

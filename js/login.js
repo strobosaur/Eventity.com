@@ -14,7 +14,8 @@ $('#login-form').submit(function(e){
             'login_pwd': pwd,
         },
         success: function(response){
-            if (response !== false) {
+            console.log(response);
+            if (response == "true") {
                 getSideMenuAjax();
                 getMenuAjax();
                 updateEventListAjax();
