@@ -30,7 +30,25 @@ function getSideMenuAdmin(){
             $.getScript("./admin/js/admin_event_list.js");
             $.getScript("./admin/js/admin_user_list.js");
             $.getScript("./admin/js/admin_event_actions.js");
+            $.getScript("./admin/js/admin_side_menu_actions.js");
         }
     });
+}
 
+// FUNCTION GET ADMIN USER LIST
+function getUserListAdmin(){
+    $.ajax({
+        url: 'admin_user_list_ajax.php',
+        type: 'POST',
+        data: {
+            'admin_user_list': 1,
+        },
+        success: function(response){
+            $("#event-list").empty();
+            $("#event-list").append(response);
+            $.getScript("./admin/js/admin_event_list.js");
+            $.getScript("./admin/js/admin_user_list.js");
+            $.getScript("./admin/js/admin_event_actions.js");
+        }
+    });
 }

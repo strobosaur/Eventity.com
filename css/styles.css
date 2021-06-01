@@ -103,7 +103,7 @@ ul li a:hover {
     text-decoration: none;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    color: var(--text1);
+    color: white;
     padding: 0;
     font-weight: bold;
 }
@@ -519,6 +519,11 @@ button:hover {
     width: 100%;
 }
 
+.link-btn:hover {
+    filter:brightness(125%);
+    color: var(--text1)
+}
+
 .view-event-btn {
     border: none;
     outline: none;
@@ -532,15 +537,15 @@ button:hover {
     font-size: 20px;
     text-decoration: none;
     font-weight: bold;
-    width: 100%;
+    width: auto;
 }
 
-.link-btn:hover {
+.view-event-btn:hover {
     filter:brightness(125%);
     color: var(--text1)
 }
 
-.link-btn-small {
+.view-user-btn {
     border: none;
     outline: none;
     background: none;
@@ -550,9 +555,20 @@ button:hover {
     padding: 16px 16px;
     margin: 0px;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
     text-decoration: none;
+    font-weight: bold;
     width: auto;
+}
+
+.view-user-btn:hover {
+    filter:brightness(125%);
+    color: var(--text1)
+}
+
+.link-btn:hover {
+    filter:brightness(125%);
+    color: var(--text1)
 }
 
 #link-btn-small {
@@ -562,10 +578,10 @@ button:hover {
     cursor: pointer;
     font-family: inherit;
     color: var(--text2);
-    padding: 16px 16px;
+    padding: 8px 8px;
     margin: 0px;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     text-decoration: none;
     width: auto;
 }
@@ -577,6 +593,137 @@ button:hover {
 }
 
 /* ======== USER LIST ADMIN ======== */
+
+.user-box-admin {
+    width: 100%;
+    display: inline-flex;
+    flex-flow: row;
+}
+
+.user-box-left {
+    width: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-box-mid {
+    width:100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.user-box-right {
+    width:0;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+}
+
+.user-box-midtop {
+    width: 100%;    
+    height:48px;
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    line-height: 48px;
+    text-align: justify;
+    padding: 0;
+    margin: 8px 8px;
+}
+
+.user-box-midtop img {
+    margin: 0;
+    display:inline-block;
+    max-width: 48px;
+    max-width: 48px;
+    border-radius:24px;
+}
+
+.profile-view-top .view-user-btn {
+    padding: 0px;
+    margin: 0px 16px;
+    width: auto;
+    display: inline-block;
+}
+
+.user-box-midbot {
+    width: 100%;    
+    height:70px;
+    display:flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--text1);
+    padding: 10px 10px;
+    margin: 0;
+    background-color: var(--background3);
+    border-radius: 8px;
+    border: 2px solid var(--decoration1);
+    font-size: 14px;
+}
+
+.user-box-midbot2 {
+    width: 100%;    
+    height:32px;
+    display:flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--text1);
+    padding: 10px 0;
+    margin: 0;
+}
+
+.user-box-midbot-left {
+    width: 40%;
+    height: 100%;
+    display:flex;
+    flex-flow: row;
+}
+
+.user-box-midbot-mid {
+    width: 35%;
+    height: 100%;
+    display:flex;
+    flex-flow: row;
+}
+
+.user-box-midbot-right {
+    width: 25%;
+    height: 100%;
+    display:flex;
+    flex-flow: row;
+}
+
+.left-box {
+    width: 33%;
+    text-align: right;
+    display:flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+}
+
+.right-box {
+    width:66%;
+    text-align: left;
+    display:flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+}
+
+p1 {
+    text-align: left;
+    padding-left: 8px;
+    font-size: 12px;
+}
+
+p2 {
+    text-align: right;
+    font-size: 12px;
+}
+
+/* ======== EVENT LIST ======== */
 
 .event-item-header {
     width: auto;
