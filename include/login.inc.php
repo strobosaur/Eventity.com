@@ -473,7 +473,7 @@ function deleteAccount($userID){
     $stmt->bindValue(":userID", $userID);
     if($result = $stmt->execute()){
         while($row = $result->fetchArray()){
-            deleteUserEvent($row['eventID']);
+            deleteEvent($row['eventID']);
         }
     } else {
         $success = false;
