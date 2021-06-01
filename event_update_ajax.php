@@ -2,7 +2,7 @@
 session_start();
 
 // SECURITY
-if(!isset($_POST['create-event']) || !isset($_SESSION['userID'])){
+if(!isset($_POST['update-event']) || !isset($_SESSION['userID'])){
     header("location: index.php");
     exit();
 } else {
@@ -13,10 +13,10 @@ $eventCreateBox =
     <div id="event-view-box">
 
         <div class="header">
-            <h2>Create new event</h2>
+            <h2>Update your event info</h2>
         </div>
 
-        <form class="form-event" id="create-event-form" name="create-event-form" onsubmit="" action="event_create_process.php" method="post">
+        <form class="form-event" id="update-event-form" name="update-event-form" onsubmit="" action="event_create_process.php" method="post">
 
 
             <div class="form-control">
@@ -101,8 +101,10 @@ $eventCreateBox =
                     mymap.on("click", onMapClick);
                 </script>
             </div>
+
+            <input type="hidden" name="evt_id" id="evt_id" value="' . $_POST['eventID'] . '">
         
-            <button type="submit" name="create" id="create">Create event</button>
+            <button type="submit" name="create" id="create">Update event</button>
 
         </form>
     </div>

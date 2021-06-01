@@ -12,7 +12,6 @@ $('#create-event-form').submit(function(e){
         contentType: false,
         processData: false,
         success: function(response){
-            console.log(response);
             if (response == "true") {
                 getSideMenuAjax();
                 updateEventListAjax();

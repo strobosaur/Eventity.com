@@ -50,12 +50,11 @@ $("#update-event-btn").submit(function(e) {
     var eventID = $(this).data("cid");
 
     $.ajax({
-        url: 'event_attend_remove_ajax.php',
+        url: 'event_update_ajax.php',
         type: 'POST',
         data: {
-            'remove-attend': 1,
+            'update-event': 1,
             'eventID': eventID,
-            'userID': userID,
         },
         success: function(response){
             getEventViewAjax(eventID);
@@ -65,7 +64,7 @@ $("#update-event-btn").submit(function(e) {
 })
 
 // DELETE EVENT BUTTON
-$("#update-event-btn").submit(function(e) {
+$("#delete-event-btn").submit(function(e) {
     e.preventDefault();
 
     var eventID = $(this).data("cid");
