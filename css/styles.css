@@ -5,14 +5,11 @@
 }
 
 :root {
-    /*#46344E*/
     --background1:  rgba(70,52,78, 0.8);
-    /*--background2: #0F292F;*/
     --background2: rgba(90,85,96,0.3);
     --background3: rgba(90,85,96,0.6);
     --background4: #1f4443;
     --decoration1: #9D8D8F;
-    /*--text1: #9D8D8F;*/
     --text1: #C4B5B7;
     --text2: #ECD50F;
 }
@@ -42,6 +39,8 @@ body {
     height: 48px;
     top: 0;
 }
+
+/* ======== NAVIGATION BAR ======== */
 
 nav {
     width: 100%;
@@ -79,6 +78,8 @@ ul li a:hover {
     color: var(--text2);
 }
 
+/* ======== MESSAGE BAR ======== */
+
 .message-bar {
     width: auto;
     height: 48px;
@@ -106,6 +107,8 @@ ul li a:hover {
     padding: 0;
     font-weight: bold;
 }
+
+/* ======== MAIN LAYOUT ======== */
 
 #mid-column {
     margin: 0 auto;
@@ -145,6 +148,8 @@ ul li a:hover {
     padding: 30px;
     /*opacity: 50%;*/
 }
+
+/* ======== PROFILE VIEW ======== */
 
 .profile-view-top {
     line-height: 96px;
@@ -265,6 +270,8 @@ ul li a:hover {
     line-height: inherit;
     display: inline-block;
 }
+
+/* ======== EVENT LIST ======== */
 
 .event-view-box {
     min-width: 600px;
@@ -465,6 +472,8 @@ button:hover {
     visibility: visible;
 }
 
+/* ======== EVENT VIEW ADMIN ======== */
+
 .event-box {
     width: 100%;
     min-width: 400px;
@@ -567,6 +576,8 @@ button:hover {
     text-decoration: underline;
 }
 
+/* ======== USER LIST ADMIN ======== */
+
 .event-item-header {
     width: auto;
     display: block;
@@ -602,6 +613,8 @@ button:hover {
     text-align: center;
     font-size: 12px;
 }
+
+/* ======== EVENT VIEW ======== */
 
 .event-view-box {
     width: 100%;

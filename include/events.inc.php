@@ -90,59 +90,6 @@ function removeImageFromEvent($eventID, $imgPath) {
     }
 }
 
-// FUNCTION DELETE POST
-function deleteEvent($eventID) 
-{
-    $resultEvent = eventExists($eventID);
-    
-    if ($resultEvent === false) {
-        return false;
-    } else {
-        $db = new SQLite3("./db/db.db");
-
-        
-        // PREPARE DB QUERY DELETE ATTENDING
-        $sql = "DELETE FROM attending
-                WHERE eventID = :eventID";
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue("eventID", $eventID, SQLITE3_INTEGER);
-        $stmt->execute();
-
-        $sql = "SELECT * FROM event_img WHERE eventID = :eventID";
-
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':eventID', $eventID, SQLITE3_INTEGER);
-        if($resultImg = $stmt->execute()){
-            // DELETE IMAGE FILES
-            while ($row = $resultImg->fetchArray()){
-                unlink($row['img_path']);
-            }
-        }
-
-        // PREPARE DB QUERY IMAGE DELETE
-        $sql = "DELETE FROM event_img WHERE eventID = :eventID";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':eventID', $eventID, SQLITE3_INTEGER);
-
-        $stmt->execute();
-
-        // PREPARE DB QUERY EVENT DELETE
-        $sql = "DELETE FROM 'events' WHERE eventID = :eventID";
-
-        $stmt = $db->prepare($sql);
-        $stmt->bindValue(':eventID', $eventID, SQLITE3_INTEGER);
-
-        // EXECUTE QUERY
-        if ($stmt->execute()) {
-            $db->close();
-            return true;
-        } else {
-            $db->close();
-            return false;
-        }
-    }
-}
-
 //FUNCTION ADD ATTENDEE TO EVENT
 function addAttendee($eventID, $userID) {
 
@@ -316,7 +263,7 @@ function getWeatherDatePHP($latt,$long,$date,$hour){
 }
 
 // FUNCTION DELETE EVENT
-function deleteUserEvent($eventID){
+function deleteEvent($eventID){
     $db = new SQLite3("./db/db.db");
 
     $success = new bool(true);
@@ -342,6 +289,16 @@ function deleteUserEvent($eventID){
     } else {
         $success = false;
     }
+
+    // DELETE IMAGE DATABASE ENTRIES
+    $sql = "DELETE FROM event_img
+            WHERE eventID = :eventID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":eventID", $eventID, SQLITE3_INTEGER);
+    if (!$stmt->execute()){
+        $success = false;
+    }
+
 
     // DELETE EVENT
     $sql = "DELETE FROM events
