@@ -119,6 +119,21 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                 </form>';
             }
 
+            if($userID === $viewerID){
+                $eventView .=
+                '<div class="menu-view-bot" id="menu-view-bot">
+
+                    <div class="view-bot-left" id="view-bot-left">
+                        <button type="submit" name="update-event-btn" id="update-event-btn" data-cid="' . $eventID . '">Update event info</button>
+                    </div>
+                    
+                    <div class="view-bot-right" id="view-bot-right">
+                        <button type="submit" name="delete-event-btn" id="delete-event-btn" data-cid="' . $eventID . '">Delete event</button>
+                    </div>
+
+                </div>';
+            }
+
             $eventView .=
             '</div>            
 

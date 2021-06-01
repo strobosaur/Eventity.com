@@ -668,7 +668,7 @@ button:hover {
     height:32px;
     display:flex;
     flex-flow: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     color: var(--text1);
     padding: 10px 0;

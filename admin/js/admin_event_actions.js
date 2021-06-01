@@ -12,7 +12,7 @@ $(".event-admin-deny-btn").click(function(e){
         },
         success: function(response){
             if(response != "false"){
-                updateEventListAdmin();
+                updateEventListAdmin(1);
                 setTopBarMessage("Event removed");
             } else {
                 setTopBarMessage("Event couldn't be removed");
@@ -35,7 +35,7 @@ $(".event-admin-ok-btn").click(function(e){
         },
         success: function(response){
             if(response != "false"){
-                updateEventListAdmin();
+                updateEventListAdmin(1);
                 setTopBarMessage("Event approved");
             } else {
                 setTopBarMessage("Event couldn't be approved")
