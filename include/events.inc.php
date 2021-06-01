@@ -17,7 +17,8 @@ function getDateFromDateTime($dateTime){
 function eventExists($eventID)
 {
     $db = new SQLite3("./db/db.db");
-    $sql = "SELECT * FROM events WHERE eventID = :eventID";
+    $sql = "SELECT * FROM events 
+            WHERE eventID = :eventID";
 
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':eventID', $eventID, SQLITE3_INTEGER);
@@ -66,7 +67,8 @@ function addImgToEvent($eventID, $imgPath){
 
     if($result !== false) {
         $db = new SQLite3("./db/db.db");
-        $sql = "INSERT INTO event_img (eventID, img_path) VALUES ($eventID, $imgPath)";
+        $sql = "INSERT INTO event_img (eventID, img_path) 
+                VALUES ($eventID, $imgPath)";
         if($db->query($sql)){
             $db->close();
             return true;
@@ -80,7 +82,8 @@ function addImgToEvent($eventID, $imgPath){
 //FUNCTION REMOVE IMAGE FROM EVENT
 function removeImageFromEvent($eventID, $imgPath) {
     $db = new SQLite3("./db/db.db");
-    $sql = "DELETE FROM event_img WHERE eventID = $eventID, img_path = $imgPath";
+    $sql = "DELETE FROM event_img 
+            WHERE eventID = $eventID, img_path = $imgPath";
     if($db->query($sql)){
         $db->close();
         return true;
