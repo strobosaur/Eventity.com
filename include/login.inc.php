@@ -438,4 +438,67 @@ function fetchProfileImg($userID) {
     }
 }
 
+// FUNCTION GET USER AGE
+function getUserAge($userID){
+    $userData = userExists($userID);
+    $birthDate = $userData['birth_date'];
+    $birthDateArr = explode("-", $birthDate);
+
+    // CALCULATE AGE
+    $age = (date("md", date("U", mktime(0,0,0,$birthDateArr[1],$birthDateArr[2],$birthDateArr[0]))) > date("md")
+         ? ((date("Y") - ($birthDateArr[0]) - 1))
+         : (date("Y") - $birthDateArr[0]));
+
+    return $age;
+}
+
+// FUNCTION DELETE USER ACCOUNT
+function deleteAccount($userID){
+    $success = new bool(true);
+
+    $userData = userExists($userID);
+    $userID = $userData['userID'];
+
+    // DELETE PROFILE IMAGE
+    if($userData['profile_img'] != null){
+        unlink($userData['profile_img']);
+    }
+
+    $db = new SQLite3("./db/db.db");
+
+    // DELETE USERS EVENTS
+    $sql = "SELECT * FROM events
+            WHERE event_userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":userID", $userID);
+    if($result = $stmt->execute()){
+        while($row = $result->fetchArray()){
+            deleteUserEvent($row['eventID']);
+        }
+    } else {
+        $success = false;
+    }
+
+    // DELETE USERS ATTENDS
+    $sql = "DELETE FROM attending
+            WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":userID", $userID, SQLITE3_INTEGER);
+    if (!$stmt->execute()){
+        $success = false;
+    }
+
+    // DELETE USER ACCOUNT
+    $sql = "DELETE FROM users
+            WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":userID", $userID, SQLITE3_INTEGER);
+    if (!$stmt->execute()){
+        $success = false;
+    }
+
+    // RETURN OPERATIONS OK
+    return $success;
+}
+
 ?>
