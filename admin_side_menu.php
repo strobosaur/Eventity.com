@@ -17,6 +17,7 @@ if (!isset($_POST['admin_side_menu']) || ($_SESSION['account_type'] < 1)) {
         <button type="submit" name="auth-events-btn" id="auth-events-btn">Events awaiting approval</button>
         <button type="submit" name="all-events-btn" id="all-events-btn">All events list</button>
         <button type="submit" name="user-list-btn" id="user-list-btn">User list</button>
+        <button type="submit" name="update-news-btn" id="update-news-btn">Update site news</button>
         
     </div>';
     echo $sideMenu;

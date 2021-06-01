@@ -36,32 +36,20 @@ function makeAdminListItem($row){
             </div>
         </div>
         </div>
-        <div class="event-box-admin2" id="event-box">
-            <button class="event-admin-ok-btn" type="submit" id="link-btn-small" data-cid="'. $evtID .'"><img id="img-approve" src="./img/check3.png" width="32px" height="32px"></button>
-            <button class="event-admin-deny-btn" type="submit" id="link-btn-small" data-cid="'. $evtID .'"><img id="img-deny" src="./img/cross3.png" width="32px" height="32px"></button>
+        <div class="event-box-admin2" id="event-box">';
+
+        if($row['adminOK'] != 1){
+            $event .=
+            '<button class="event-admin-ok-btn" type="submit" id="link-btn-small" data-cid="'. $evtID .'"><img id="img-approve" src="./img/check3.png" width="32px" height="32px"></button>';
+        }
+
+        $event .=
+            '<button class="event-admin-deny-btn" type="submit" id="link-btn-small" data-cid="'. $evtID .'"><img id="img-deny" src="./img/cross3.png" width="32px" height="32px"></button>
         </div>
     </container>';
 
     // POST ITEM
     echo $event;
-}
-
-// FUNCTION APPROVE EVENT
-function approveEvent($eventID){
-    $db = new SQLite3("./db/db.db");
-    $sql = "UPDATE 'events'
-            SET adminOK = :adminOK
-            WHERE eventID = :eventID";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(":eventID", $eventID, SQLITE3_INTEGER);
-    $stmt->bindValue(":adminOK", 1, SQLITE3_INTEGER);
-    if($stmt->execute()){
-        $db->close();
-        return true;
-    } else {
-        $db->close();
-        return false;
-    }
 }
 
 // MAKE ADMIN EVENT LIST ITEM
@@ -165,11 +153,25 @@ function makeAdminUserListItem($row){
                     </div>
                 </div>                
 
-                <div class="user-box-midbot2">
-                    <button class="user-admin-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make admin</button>
-                    <button class="user-moderator-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make moderator</button>
-                    <button class="user-standard-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make standard</button>
-                    <button class="user-delete-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Delete account</button>
+                <div class="user-box-midbot2">';
+
+                if($userAccType != 2){
+                    $userBox .=
+                    '<button class="user-admin-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make admin</button>';
+                }
+
+                if($userAccType != 1){
+                    $userBox .=
+                    '<button class="user-moderator-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make moderator</button>';
+                }
+
+                if($userAccType != 0){
+                    $userBox .=
+                    '<button class="user-standard-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make standard</button>';
+                }
+
+                $userBox .=
+                    '<button class="user-delete-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Delete account</button>
                 </div>
             </div>
 
@@ -181,5 +183,25 @@ function makeAdminUserListItem($row){
     // POST ITEM
     echo $userBox;
 }
+
+// FUNCTION APPROVE EVENT
+function approveEvent($eventID){
+    $db = new SQLite3("./db/db.db");
+    $sql = "UPDATE 'events'
+            SET adminOK = :adminOK
+            WHERE eventID = :eventID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(":eventID", $eventID, SQLITE3_INTEGER);
+    $stmt->bindValue(":adminOK", 1, SQLITE3_INTEGER);
+    if($stmt->execute()){
+        $db->close();
+        return true;
+    } else {
+        $db->close();
+        return false;
+    }
+}
+
+// FUNCTION 
 
 ?>

@@ -52,7 +52,7 @@ $(document).ready(function(){
     $('#menu_admin').click(function(e) {
         e.preventDefault();
         stopUpdateEvents();
-        updateEventListAdmin();
+        updateEventListAdmin(1);
         getSideMenuAdmin();
     })
 });

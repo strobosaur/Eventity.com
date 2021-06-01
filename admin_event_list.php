@@ -10,10 +10,18 @@ if (!isset($_POST['admin_update_events']) || !($_SESSION['account_type'] >= 1)){
     require_once './admin/include/admin.inc.php';
 
     $db = new SQLite3("./db/db.db");
-    $result = $db->query("SELECT * 
-                          FROM events 
-                          WHERE adminOK = 0
-                          ORDER BY eventID DESC");
+
+    // AWAITING AUTHORIZATION OR ALL EVENTS
+    if($_POST['awaiting_auth'] == 1){
+        $result = $db->query("SELECT * 
+                            FROM events 
+                            WHERE adminOK = 0
+                            ORDER BY eventID DESC");
+    } else {
+        $result = $db->query("SELECT * 
+                            FROM events
+                            ORDER BY eventID DESC");
+    }
 
     // CREATE EVENT LIST
     $eventList = '';
