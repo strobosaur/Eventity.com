@@ -44,7 +44,7 @@ $("#form-remove-attend-btn").submit(function(e) {
 })
 
 // UPDATE EVENT INFO BUTTON
-$("#update-event-btn").submit(function(e) {
+$("#update-event-btn").click(function(e) {
     e.preventDefault();
 
     var eventID = $(this).data("cid");
@@ -57,17 +57,21 @@ $("#update-event-btn").submit(function(e) {
             'eventID': eventID,
         },
         success: function(response){
-            getEventViewAjax(eventID);
-            setTopBarMessage("Event info updated")
+            $("#event-list").empty();
+            $("#event-list").append(response);
+            $.getScript("./js/update_event.js");
+            /*getEventViewAjax(eventID);
+            setTopBarMessage("Event info updated")*/
         }
     })
 })
 
 // DELETE EVENT BUTTON
-$("#delete-event-btn").submit(function(e) {
+$("#delete-event-btn").click(function(e) {
     e.preventDefault();
 
     var eventID = $(this).data("cid");
+    console.log(eventID);
 
     $.ajax({
         url: 'event_delete_process_ajax.php',
@@ -77,6 +81,7 @@ $("#delete-event-btn").submit(function(e) {
             'eventID': eventID,
         },
         success: function(response){
+            console.log(response);
             updateEventListAjax();
             setTopBarMessage("Your event has been deleted")
         }

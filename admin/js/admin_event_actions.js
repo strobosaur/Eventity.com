@@ -1,6 +1,6 @@
 // ADMIN APPROVE EVENT BUTTON
 $(".event-admin-deny-btn").click(function(e){
-    e.preventDefault;
+    e.preventDefault();
     var cid = $(this).data('cid');
 
     $.ajax({
@@ -11,6 +11,7 @@ $(".event-admin-deny-btn").click(function(e){
             "eventID": cid,
         },
         success: function(response){
+            console.log(response);
             if(response != "false"){
                 updateEventListAdmin(1);
                 setTopBarMessage("Event removed");
@@ -23,7 +24,7 @@ $(".event-admin-deny-btn").click(function(e){
 
 // ADMIN APPROVE EVENT BUTTON
 $(".event-admin-ok-btn").click(function(e){
-    e.preventDefault;
+    e.preventDefault();
     var cid = $(this).data('cid');
 
     $.ajax({
