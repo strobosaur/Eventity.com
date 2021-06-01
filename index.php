@@ -1,6 +1,7 @@
 <?php
     include_once './include/views/_header.php';
 ?>
+
 <div id="mid-column">
 
     <div class="left-field" id="left-field">

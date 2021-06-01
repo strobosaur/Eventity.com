@@ -9,7 +9,7 @@ if(!isset($_POST['create-event']) || !isset($_SESSION['userID'])){
 
 // CREATE EVENT BOX
 $eventCreateBox =
-'<container class="container "id="create-event">
+'<div class="container" "id="create-event">
     <div id="event-view-box">
 
         <div class="header">
@@ -106,7 +106,7 @@ $eventCreateBox =
 
         </form>
     </div>
-</container>';
+</div>';
 
 echo $eventCreateBox;
 

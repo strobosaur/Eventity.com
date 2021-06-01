@@ -52,3 +52,19 @@ function getUserListAdmin(){
         }
     });
 }
+
+// FUNCTION GET ADMIN USER LIST
+function getNewsUpdateAdmin(){
+    $.ajax({
+        url: 'admin_news_update_ajax.php',
+        type: 'POST',
+        data: {
+            'update-msg': 1,
+        },
+        success: function(response){
+            $("#event-list").empty();
+            $("#event-list").append(response);
+            $.getScript("./admin/js/admin_update_msg_actions.js");
+        }
+    });
+}
