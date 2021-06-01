@@ -98,8 +98,15 @@ function deleteEvent($eventID)
     if ($resultEvent === false) {
         return false;
     } else {
-        // DELETE IMAGE(S)
         $db = new SQLite3("./db/db.db");
+
+        
+        // PREPARE DB QUERY DELETE ATTENDING
+        $sql = "DELETE FROM attending
+                WHERE eventID = :eventID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue("eventID", $eventID, SQLITE3_INTEGER);
+        $stmt->execute();
 
         $sql = "SELECT * FROM event_img WHERE eventID = :eventID";
 
@@ -306,6 +313,47 @@ function getWeatherDatePHP($latt,$long,$date,$hour){
     curl_close($ch);
     $response=json_decode($response_json, true);
 
+}
+
+// FUNCTION DELETE EVENT
+function deleteUserEvent($eventID){
+    $db = new SQLite3("./db/db.db");
+
+    $success = new bool(true);
+
+    // DELETE ATTENDING
+    $sql = "DELETE FROM attending
+            WHERE eventID = :eventID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":eventID", $eventID, SQLITE3_INTEGER);
+    if (!$stmt->execute()){
+        $success = false;
+    }
+
+    // DELETE IMAGES
+    $sql = "SELECT * FROM event_img
+            WHERE eventID = :eventID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":eventID", $eventID, SQLITE3_INTEGER);
+    if($result = $stmt->execute()){
+        while($row = $result->fetchArray()){
+            unlink($row['img_path']);
+        }
+    } else {
+        $success = false;
+    }
+
+    // DELETE EVENT
+    $sql = "DELETE FROM events
+            WHERE eventID = :eventID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":eventID", $eventID, SQLITE3_INTEGER);
+    if (!$stmt->execute()){
+        $success = false;
+    }
+
+    // RETURN OPERATIONS OK
+    return $success;
 }
 
 ?>

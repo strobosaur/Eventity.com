@@ -64,4 +64,67 @@ function approveEvent($eventID){
     }
 }
 
+// MAKE ADMIN EVENT LIST ITEM
+function makeAdminUserListItem($row){
+
+    $profileImg = fetchProfileImg($row['email']);
+
+    $userID = $row['userID'];
+    $userUname = $row['uname'];
+    $userEmail = $row['email'];
+
+    $userFname = $row['fname'];
+    $userLname = $row['lname'];
+
+    $userBirthDate = $row['birth_date'];
+    $userDate = $row['reg_date'];
+
+    $userAdress = $row['adress'];
+    $userZip = $row['zip'];
+    $userCity = $row['city'];
+    $userAccType = $row['account_type'];
+
+    if ($userBirthDate != null){
+        $userAge = getUserAge($userID);
+    }
+
+    // CREATE EVENT ITEM
+    $event =
+    '<container class="container">
+        <div class="user-box-admin" id="user-box">
+            <div class="user-box-left">
+                <img id="profile-img2" src="' . $profileImg . '" width="40px" height="40px">        
+            </div>
+
+            <div class="user-box-mid">
+                <button class="view-user-btn" type="submit" data-cid="' . $userID . '" name="view-user-btn" id="view-user-btn">' . $userUname . '</button>';
+
+                $event .=
+                '<div class="event-list-low">
+                    <div class="event-list-lowleft">
+                        <small>Created by: <br>' . $evtUname . '</small>
+                    </div>
+                    <div class="event-list-lowmid">
+                        <small>Date: ' . $evtDate . '<br>
+                            Time: ' . $evtTime . '</small>
+                    </div>
+                    <div class="event-list-lowright">
+                        <small>' . $evtCity . '<br>
+                        Price: ' . $evtPrice . '</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="event-box-admin2" id="event-box">
+            <button class="user-admin-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make admin<img id="img-approve" src="./img/check3.png" width="32px" height="32px"></button>
+            <button class="user-moderator-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make moderator<img id="img-approve" src="./img/check3.png" width="32px" height="32px"></button>
+            <button class="user-standard-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make standard<img id="img-approve" src="./img/check3.png" width="32px" height="32px"></button>
+            <button class="user-delete-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Delete account<img id="img-deny" src="./img/cross3.png" width="32px" height="32px"></button>
+        </div>
+    </container>';
+
+    // POST ITEM
+    echo $event;
+}
+
 ?>
