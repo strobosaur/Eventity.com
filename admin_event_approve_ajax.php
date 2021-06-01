@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($_POST['event-approve'])){
+if(!isset($_POST['approve-event'])){
     header("location: index.php");
     exit();
 } else {
