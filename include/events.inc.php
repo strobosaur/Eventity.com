@@ -269,7 +269,7 @@ function getWeatherDatePHP($latt,$long,$date,$hour){
 function deleteEvent($eventID){
     $db = new SQLite3("./db/db.db");
 
-    $success = new bool(true);
+    $success = true;
 
     // DELETE ATTENDING
     $sql = "DELETE FROM attending
@@ -301,7 +301,6 @@ function deleteEvent($eventID){
     if (!$stmt->execute()){
         $success = false;
     }
-
 
     // DELETE EVENT
     $sql = "DELETE FROM events
