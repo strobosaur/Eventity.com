@@ -76,7 +76,6 @@ function getEventViewAjax(eventID){
 
             // GET WEATHER DATA
             var weatherArr = await getWeatherDate(response.lat,response.lng);
-            console.log(weatherArr);
             $("#event-view-lowmid").append('<div id="weather-box"></div>');
 
             // IS THERE WEATHER DATA FOR THE DATE/TIME OF THIS EVENT?
