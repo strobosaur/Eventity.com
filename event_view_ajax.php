@@ -91,52 +91,55 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                 <div id="weather-box">
                 </div>
 
-                <div id="attend-info">                    
-                    <button class="link-btn-small" type="submit" name="event-attendees" id="event-attendees" value="' . $eventID . '">Attending (' . $attendees . ')</button>
-                </div>
-
             </div>
 
-            <div id="event-view-low">';
+            <div id="event-view-low">
+                <div class="event-view-low-left" id="event-view-low-left">';
 
-            if (isAttending($eventID, $viewerID) == false){
+                if (isAttending($eventID, $viewerID) == false){
+                    $eventView .=
+                    '<form class="form-link-btn" id="form-event-attend-btn" action="event_attend.php" method="POST">
+
+                        <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
+                        <input type="hidden" value="' . $viewerID . '" id="attendingID" name="attendingID">
+
+                        <button type="submit" name="event-attend-btn" id="event-attend-btn">Attend</button>
+                    </form>';
+                } else {
+                    $eventView .=
+                    '<form class="form-link-btn" id="form-remove-attend-btn" action="event_attend.php" method="POST">
+
+                        <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
+                        <input type="hidden" value="' . $viewerID . '" id="attendingID" name="attendingID">
+
+                        <button type="submit" name="remove-attend-btn" id="remove-attend-btn">Don´t attend</button>
+                    </form>';
+                }
+
+                if($userID === $viewerID){
+                    $eventView .=
+
+                    '<button type="submit" name="update-event-btn" id="update-event-btn" data-cid="' . $eventID . '">Update event info</button>';
+                }
+
+                $eventView .=                    
+                '</div>
+                
+                <div class="event-view-low-right" id="event-view-low-right">
+
+                    <div id="attend-info">                    
+                        <button class="link-btn-small" type="submit" name="event-attendees" id="event-attendees" value="' . $eventID . '">Attending (' . $attendees . ')</button>
+                    </div>';                    
+
+                if($userID === $viewerID){
+                    $eventView .=
+
+                        '<button type="submit" name="delete-event-btn" id="delete-event-btn" data-cid="' . $eventID . '">Delete event</button>';
+                }
+
                 $eventView .=
-                '<form class="form-link-btn" id="form-event-attend-btn" action="event_attend.php" method="POST">
-
-                    <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
-                    <input type="hidden" value="' . $viewerID . '" id="attendingID" name="attendingID">
-
-                    <button type="submit" name="event-attend-btn" id="event-attend-btn">Attend</button>
-                </form>';
-            } else {
-                $eventView .=
-                '<form class="form-link-btn" id="form-remove-attend-btn" action="event_attend.php" method="POST">
-
-                    <input type="hidden" value="' . $eventID . '" id="eventID" name="eventID">
-                    <input type="hidden" value="' . $viewerID . '" id="attendingID" name="attendingID">
-
-                    <button type="submit" name="remove-attend-btn" id="remove-attend-btn">Don´t attend</button>
-                </form>';
-            }
-
-            if($userID === $viewerID){
-                $eventView .=
-                '<div class="menu-view-bot" id="menu-view-bot">
-
-                    <div class="view-bot-left" id="view-bot-left">
-                        <button type="submit" name="update-event-btn" id="update-event-btn" data-cid="' . $eventID . '">Update event info</button>
-                    </div>
-                    
-                    <div class="view-bot-right" id="view-bot-right">
-                        <button type="submit" name="delete-event-btn" id="delete-event-btn" data-cid="' . $eventID . '">Delete event</button>
-                    </div>
-
-                </div>';
-            }
-
-            $eventView .=
-            '</div>            
-
+                '</div>
+            </div>
         </div>
     </container>';
 
