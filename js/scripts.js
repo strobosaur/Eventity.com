@@ -121,11 +121,13 @@ function getProfileAjax(){
 
 // FUNCTION GET REGISTER FORM
 function getSideMenuAjax(){
+    
     $.ajax({
         url: 'side_menu_ajax.php',
         type: 'POST',
         data: {
             'get_side_menu': 1,
+            'read-message': 1,
         },
         success: function(response){
             $("#left-field").empty();

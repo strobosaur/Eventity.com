@@ -15,3 +15,9 @@ $("#user-list-btn").click(function(e){
     e.preventDefault;
     getUserListAdmin();
 })
+
+// ADMIN APPROVE EVENT BUTTON
+$("#update-news-btn").click(function(e){
+    e.preventDefault;
+    getNewsUpdateAdmin();
+})

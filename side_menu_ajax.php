@@ -12,6 +12,15 @@ if(!isset($_POST['get_side_menu']) || !isset($_SESSION['userID'])){
     $userData = userExists($_SESSION['userID']);
     $profileImg = $userData['profile_img'];
     $uname = $userData['uname'];
+    
+    // GET SITE MESSAGE
+    $returnMsg = '';
+    if($file = fopen('./admin/message.txt', "r")){
+        while(!feof($file)){
+            $returnMsg .= fgets($file);
+        }
+        fclose($file);
+    }
 
     // MAKE SIDE MENU HTML
     $sideMenu =
@@ -31,9 +40,9 @@ if(!isset($_POST['get_side_menu']) || !isset($_SESSION['userID'])){
             <h2>Site news</h2>
         </div>
         
-        <div class="news-box" id="news-box">
-            <p>Under construction, meny exciting functions and breaches of your private data will be coming shortly!</p>
-        </div>
+        <div class="news-box" id="news-box">'
+            . $returnMsg .
+        '</div>
 
     </div>';
 
