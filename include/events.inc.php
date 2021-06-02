@@ -196,7 +196,9 @@ function makeEventListItem($row){
     }
 
     if($evtAdress != null){
-        $evtAdress = "Adress: " . $evtAdress;
+        $evtLocation = "Adress: ";
+    } else {
+        $evtLocation = "";
     }
 
     // CREATE EVENT ITEM
@@ -222,15 +224,15 @@ function makeEventListItem($row){
                 '<div class="event-list-low">
                     <div class="event-list-lowleft">
                         <img id="profile-img2" src="' . $profileImg . '" width="40px" height="40px">
-                        <small>Created by: <br>' . $evtUname . '</small>
+                        <small>Created by: <br><b>' . $evtUname . '</b></small>
                     </div>
                     <div class="event-list-lowmid">
-                        <small>Date: ' . $evtDate . '<br>
-                            Time: ' . $evtTime . '</small>
+                        <small>Date: <b>' . $evtDate . '</b><br>
+                            Time: <b>' . $evtTime . '</b></small>
                     </div>
                     <div class="event-list-lowright">
-                        <small>' . $evtAdress . '<br>
-                        Price: ' . $evtPrice . '</small>
+                        <small>' . $evtLocation . '<b>' . $evtAdress . '</b><br>
+                        Price: <b>' . $evtPrice . '</b></small>
                     </div>
                 </div>';
             }
