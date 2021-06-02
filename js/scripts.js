@@ -95,6 +95,7 @@ function getRegisterAjax(){
     $.post("register_ajax.php", function(data){
         $("#left-field").empty();
         $("#left-field").append(data);
+        $.getScript("./js/accept_terms.js");
     });
 }
 
