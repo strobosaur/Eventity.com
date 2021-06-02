@@ -13,7 +13,7 @@
         $evtUserID = $_SESSION['userID'];
         $evtText = $_POST['evt_text'];
 
-        if($_POST['evt_indoors'] == "1"){
+        if((isset($_POST['evt_indoors'])) || ($_POST['evt_indoors'] == "1")){
             $evtIndoors = "1";
         } else {
             $evtIndoors = "0";

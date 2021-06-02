@@ -27,14 +27,10 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
 
     $eventDate = $eventData["event_date"];
     $eventTime = $eventData["event_time"];
-    $eventEdate = $eventData["event_enddate"];
-    $eventEtime = $eventData["event_endtime"];
 
     $eventHour = explode(":", $eventTime);
 
     $eventAdress = $eventData["event_adress"];
-    $eventZip = $eventData["event_zip"];
-    $eventCity = $eventData["event_city"];
 
     $eventLat = $eventData["event_lat"];
     $eventLng = $eventData["event_lng"];
@@ -77,14 +73,14 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                             Time: ' . $eventTime . '</small>
                     </div>
                     <div class="event-list-lowright">
-                        <small>' . $eventCity . '<br>
+                        <small>' . $eventAdress . '<br>
                         Price: ' . $eventPrice . '</small>
                     </div>
                 </div>
 
                 <div id="mapid">
                     <script>
-                        var mymap = getMap();
+                        var mymap = getMap(' . $eventLat . ',' . $eventLng . ');
                         var marker = L.marker([' . $eventLat . ',' . $eventLng . ']).addTo(mymap);
                     </script>
                 </div>

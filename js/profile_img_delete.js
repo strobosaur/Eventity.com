@@ -1,16 +1,20 @@
-// PROFILE IMAGE DELETE
-$('#delete-profile-img').submit(function(e) {
-    e.preventDefault();
+// WAIT FOR DOCUMENT TO LOAD
+$(document).ready(function(){
 
-    $.ajax({
-        url: 'register_img_delete_ajax.php',
-        type: 'POST',
-        data: {
-            'delete-img': 1,
-        },
-        success: function(){
-            getProfileAjax();
-            setTopBarMessage("Profile image deleted");
-        }
+    // PROFILE IMAGE DELETE
+    $('#delete-profile-img').submit(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: 'register_img_delete_ajax.php',
+            type: 'POST',
+            data: {
+                'delete-img': 1,
+            },
+            success: function(){
+                getProfileAjax();
+                setTopBarMessage("Profile image deleted");
+            }
+        });
     });
-});
+})

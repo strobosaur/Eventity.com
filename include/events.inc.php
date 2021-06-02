@@ -40,7 +40,7 @@ function uploadImg($fileName,$fileTmpName,$fileError) {
     $fileExt = end(explode('.', strtolower($fileName)));
 
     // ALLOWED FILE EXTENSIONS
-    $allowedExtArr = array('jpg', 'jpeg', 'png');
+    $allowedExtArr = array('jpg', 'jpeg', 'png', 'gif');
 
     // EXTENSION ALLOWED?
     if (in_array($fileExt, $allowedExtArr)) {
@@ -186,7 +186,7 @@ function makeEventListItem($row){
     $evtUname = $creator['uname'];
     $evtName = $row['event_name'];
     $evtText = $row['event_text'];
-    $evtCity = $row['event_city'];
+    $evtAdress = $row['event_adress'];
     $evtDate = $row['event_date'];
     $evtTime = $row['event_time'];
     $evtPrice = $row['event_price'];
@@ -195,8 +195,8 @@ function makeEventListItem($row){
         $evtPrice = "FREE!";
     }
 
-    if($evtCity != null){
-        $evtCity = "Location: " . $evtCity;
+    if($evtAdress != null){
+        $evtAdress = "Location: " . $evtAdress;
     }
 
     // CREATE EVENT ITEM
@@ -229,7 +229,7 @@ function makeEventListItem($row){
                             Time: ' . $evtTime . '</small>
                     </div>
                     <div class="event-list-lowright">
-                        <small>' . $evtCity . '<br>
+                        <small>' . $evtAdress . '<br>
                         Price: ' . $evtPrice . '</small>
                     </div>
                 </div>';
