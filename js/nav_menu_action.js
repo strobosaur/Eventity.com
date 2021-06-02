@@ -17,6 +17,7 @@ $(document).ready(function(){
     $('#menu_search').click(function(e) {
         e.preventDefault();
         getSearchAjax();
+        updateEventListAjax();
         startUpdateEvents();
     })
 

@@ -315,4 +315,32 @@ function deleteEvent($eventID){
     return $success;
 }
 
+// FUNCTION SEARCH EVENTS
+function searchEvents($searchString){
+
+    // PREPARE QUERY
+    $db = new SQLite3("./db/db.db");
+    $sql = "SELECT * FROM events 
+            WHERE event_name LIKE :search
+            OR event_text LIKE :search
+            ORDER BY eventID DESC";
+
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':search', "%".$searchString."%", SQLITE3_TEXT);
+  
+    //CREATE POSTS STRING
+    if($result = $stmt->execute()){
+        $posts = '';
+        while($row = $result->fetchArray()){
+            $posts .= makeEventListItem($row);
+        }
+    } else {
+        $db->close();
+        return false;
+    }
+
+    $db->close();
+    return $posts;
+}
+
 ?>

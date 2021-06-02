@@ -153,6 +153,22 @@ function getMenuAjax(){
     });
 }
 
+// FUNCTION GET MENU
+function getSearchAjax(){
+    $.ajax({
+        url: 'search_ajax.php',
+        type: 'POST',
+        data: {
+            'get_search_menu': 1,
+        },
+        success: function(response){
+            $("#left-field").empty();
+            $("#left-field").append(response);
+            $.getScript("./js/search.js");
+        }
+    });
+}
+
 // SET MESSAGE
 function setTopBarMessage(msg){
     $("#message-bar").empty();
