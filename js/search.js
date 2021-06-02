@@ -18,6 +18,7 @@ $('#form-search').submit(function(e) {
                 $('#search_text').val('');
                 $("#event-list").empty();
                 $("#event-list").append(response);
+                $.getScript("./js/view_event.js");
             } else {
                 setTopBarMessage("Search did not return any results");
             }

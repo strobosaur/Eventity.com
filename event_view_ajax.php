@@ -14,6 +14,7 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     $userData = userExists($eventData['event_userID']);
     $viewerData = userExists($_SESSION['userID']);
     $profileImg = fetchProfileImg($userData['email']);
+    $viewerAccType = $viewerData['account_type'];
 
     $userID = $userData['userID'];
     $userUname = $userData['uname'];
@@ -116,7 +117,7 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                     </form>';
                 }
 
-                if($userID === $viewerID){
+                if(($userID === $viewerID) || ($viewerAccType > 0)){
                     $eventView .=
 
                     '<button type="submit" name="update-event-btn" id="update-event-btn" data-cid="' . $eventID . '">Update event info</button>';
@@ -131,7 +132,7 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                         <button class="link-btn-small" type="submit" name="event-attendees" id="event-attendees" value="' . $eventID . '">Attending (' . $attendees . ')</button>
                     </div>';                    
 
-                if($userID === $viewerID){
+                if(($userID === $viewerID) || ($viewerAccType > 0)){
                     $eventView .=
 
                         '<button type="submit" name="delete-event-btn" id="delete-event-btn" data-cid="' . $eventID . '">Delete event</button>';
