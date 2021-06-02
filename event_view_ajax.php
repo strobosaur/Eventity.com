@@ -36,6 +36,14 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
     $eventLng = $eventData["event_lng"];
 
     $eventPrice = $eventData["event_price"];
+
+    $eventIndoors = $eventData["event_indoors"];
+
+    if($eventIndoors == 1){
+        $eventIndoors = "Indoors";
+    } else {
+        $eventIndoors = "Outdoors";
+    }
     
     if($eventPrice <= 0){
         $eventPrice = "FREE!";
@@ -66,15 +74,15 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                 <div class="event-list-low">
                     <div class="event-list-lowleft">
                         <img id="profile-img2" src="' . $profileImg . '" width="40px" height="40px">
-                        <small>Created by: <br>' . $userUname . '</small>
+                        <small>Created by: <br><b>' . $userUname . '</b></small>
                     </div>
                     <div class="event-list-lowmid">
-                        <small>Date: ' . $eventDate . '<br>
-                            Time: ' . $eventTime . '</small>
+                        <small>Date: <b>' . $eventDate . '</b><br>
+                            Time: <b>' . $eventTime . '</b></small>
                     </div>
                     <div class="event-list-lowright">
-                        <small>' . $eventAdress . '<br>
-                        Price: ' . $eventPrice . '</small>
+                        <small>Adress: <b>' . $eventAdress . '</b><br>
+                        Price: <b>' . $eventPrice . '</b></small>
                     </div>
                 </div>
 
@@ -84,6 +92,8 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
                         var marker = L.marker([' . $eventLat . ',' . $eventLng . ']).addTo(mymap);
                     </script>
                 </div>
+
+                <p>This event will be held <b>' . $eventIndoors . '</b></p>
 
                 <div id="weather-box">
                 </div>

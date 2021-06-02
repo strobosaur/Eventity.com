@@ -81,7 +81,7 @@ function getEventViewAjax(eventID){
             // IS THERE WEATHER DATA FOR THE DATE/TIME OF THIS EVENT?
             if (weatherArr !== false){
                 $("#weather-box").append("<h4>Expected weather at this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
-                $("#weather-box").append("<p>Temperature: " + weatherArr.temp + " °C<br>Feels like: " + weatherArr.temp_app + " °C<br>Wind: " + weatherArr.wind + " m/s<br>Rain: " + weatherArr.rain + " mm<br>In general: " + weatherArr.desc + "</p>");
+                $("#weather-box").append("<p>Temperature: <b>" + weatherArr.temp + " °C</b><br>Feels like: <b>" + weatherArr.temp_app + " °C</b><br>Wind: <b>" + weatherArr.wind + " m/s</b><br>Rain: <b>" + weatherArr.rain + " mm</b><br>In general: <b>" + weatherArr.desc + "</b></p>");
             } else {
                 $("#weather-box").append("<h4>Expected weather in this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
                 $("#weather-box").append("<p>Too early to tell...</p>");
