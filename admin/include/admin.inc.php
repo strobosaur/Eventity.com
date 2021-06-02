@@ -12,7 +12,15 @@ function makeAdminListItem($row){
     $evtTime = $row['event_time'];
     $evtPrice = $row['event_price'];
     $evtDate = $row['event_date'];
-    $evtCity = $row['event_city'];
+    $evtAdress = $row['event_adress'];
+
+    if(($evtPrice <= 0) || ($evtPrice == null)){
+        $evtPrice = "FREE!";
+    }
+
+    if($evtAdress != null){
+        $evtAdress = "Location: " . $evtAdress;
+    }
 
     // CREATE EVENT ITEM
     $event =
@@ -31,7 +39,7 @@ function makeAdminListItem($row){
                     Time: ' . $evtTime . '</small>
             </div>
             <div class="event-list-lowright">
-                <small>' . $evtCity . '<br>
+                <small>' . $evtAdress . '<br>
                 Price: ' . $evtPrice . '</small>
             </div>
         </div>
@@ -68,8 +76,6 @@ function makeAdminUserListItem($row){
     $userDate = $row['reg_date'];
 
     $userAdress = $row['street'];
-    $userZip = $row['zip'];
-    $userCity = $row['city'];
     $userAccType = $row['account_type'];
     $userAccount = "Standard";
 
@@ -141,13 +147,13 @@ function makeAdminUserListItem($row){
 
                         <div class="left-box">
                             <p2>Adress:</p2>
-                            <p2>Zip:</p2>
-                            <p2>City:</p2>
+                            <p2> </p2>
+                            <p2>Age:</p2>
                         </div>
                         <div class="right-box">
                             <p1>' . $userAdress . '</p1>
-                            <p1>' . $userZip . '</p1>
-                            <p1>'. $userCity . '</p1>
+                            <p1>' . "" . '</p1>
+                            <p1>'. $userAge . '</p1>
                         </div>
 
                     </div>
@@ -155,21 +161,25 @@ function makeAdminUserListItem($row){
 
                 <div class="user-box-midbot2">';
 
+                // MAKE ADMIN BUTTON
                 if($userAccType != 2){
                     $userBox .=
                     '<button class="user-admin-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make admin</button>';
                 }
 
+                // MAKE MODERATOR BUTTON
                 if($userAccType != 1){
                     $userBox .=
                     '<button class="user-moderator-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make moderator</button>';
                 }
 
+                // MAKE PLEB BUTTON
                 if($userAccType != 0){
                     $userBox .=
                     '<button class="user-standard-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Make standard</button>';
                 }
 
+                // DELETE ACCOUNT BUTTON
                 $userBox .=
                     '<button class="user-delete-btn" type="submit" id="link-btn-small" data-cid="'. $userID .'">Delete account</button>
                 </div>
