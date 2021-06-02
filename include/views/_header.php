@@ -7,7 +7,7 @@
 <html>
 
 <head>
-    <title>carpe.diem.nu</title>
+    <title>Eventity</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
