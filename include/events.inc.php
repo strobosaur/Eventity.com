@@ -196,7 +196,7 @@ function makeEventListItem($row){
     }
 
     if($evtAdress != null){
-        $evtAdress = "Location: " . $evtAdress;
+        $evtAdress = "Adress: " . $evtAdress;
     }
 
     // CREATE EVENT ITEM
