@@ -75,7 +75,6 @@ function makeAdminUserListItem($row){
     $userBirthDate = $row['birth_date'];
     $userDate = $row['reg_date'];
 
-    $userAdress = $row['street'];
     $userAccType = $row['account_type'];
     $userAccount = "Standard";
 
@@ -151,7 +150,7 @@ function makeAdminUserListItem($row){
                             <p2>Age:</p2>
                         </div>
                         <div class="right-box">
-                            <p1>' . $userAdress . '</p1>
+                            <p1>' . "" . '</p1>
                             <p1>' . "" . '</p1>
                             <p1>'. $userAge . '</p1>
                         </div>

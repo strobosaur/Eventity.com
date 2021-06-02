@@ -198,7 +198,7 @@ function registerUser($uname,$email,$pwd1,$pwd2){
 function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$password1,$password2) {
 
     if ($password1 !== $password2) {
-        header("location: profile.php?error=pwdmissmatch");
+        header("location: index.php");
         exit();
     }
 
@@ -210,19 +210,19 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
 
     // INPUT VALIDATION
     if ((!empty($userFnameValue)) && (strlen($userFnameValue) < 2)) {        
-        header("location: profile.php?error=fnameshort");
+        header("location: index.php?error=fnameshort");
         exit();
     } else if ((!empty($userLnameValue)) && (strlen($userLnameValue) < 2)) {        
-        header("location: profile.php?error=lnameshort");
+        header("location: index.php?error=lnameshort");
         exit();
     } else if ((!empty($userUnameValue)) && (strlen($userUnameValue) < 2)) {        
-        header("location: profile.php?error=nnameshort");
+        header("location: index.php?error=nnameshort");
         exit();
     } else if (strlen($password1) < 8) {        
-        header("location: profile.php?error=pwdshort");
+        header("location: index.php?error=pwdshort");
         exit();
     } else if (!isEmail($userEmailValue)) {
-        header("location: profile.php?error=invalidemail");
+        header("location: index.php?error=invalidemail");
         exit(); 
     }
     
@@ -230,7 +230,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     $result = userExists($userEmailValue);
     if ($result !== false) {
         if ($result['userID'] != $userID) {
-            header("location: profile.php?error=emailtaken");
+            header("location: index.php?error=emailtaken");
             exit();
         } 
     }
@@ -239,7 +239,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     $result = userExists($userUnameValue);
     if ($result !== false) {
         if ($result['userID'] != $userID) {
-            header("location: profile.php?error=nnametaken");
+            header("location: index.php?error=nnametaken");
             exit();
         } 
     }
