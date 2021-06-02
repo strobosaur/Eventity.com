@@ -30,8 +30,21 @@ $regForm =
         <input type="password" placeholder="Password" name="reg_pwd2" id="reg_pwd2">
         <small>Error message</small>
         </div>
-        
+                        
+        <div class="form-control">
+        <label>I agree to <a id="terms-conditions" href="">these terms and conditions</a></label>
+        <input type="checkbox" id="check-terms" name="check-terms" value="1">
+        <label for="check-terms"></label>
+        <small>Error message</small>
+        </div>
+
         <button type="submit" name="register" id="register">Register</button>
+        
+        <script>
+            $(document).ready(function(){
+                document.getElementById("register").style.display = "none";
+            });
+        </script>
     
     </form>
 </div>';
