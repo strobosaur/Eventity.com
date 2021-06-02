@@ -11,7 +11,8 @@ $("#news-msg-form").submit(function(e){
             "new_msg": message,
         },
         success: function(response){
-            if(response != "false"){                
+            if(response != "false"){
+                $("#new-msg").val('');
                 setTopBarMessage("New message posted");
             } else {
                 setTopBarMessage("Message failed to post")
