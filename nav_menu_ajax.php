@@ -26,7 +26,7 @@ if(!isset($_POST['get_menu'])){
                 <li><a id="menu_logout" href="logout_process.php">Log out</a></li>';
         } else if (isset($_SESSION['userID'])) {
             $userData = userExists($_SESSION['userID']);
-            $profileImg = fetchProfileImg($userData['user_email']);
+            $profileImg = fetchProfileImg($userData['email']);
 
             $nav_menu .=
                 '<li><a id="menu_profile" href="index.php">' . $_SESSION['user_uname'] . '</a></li>

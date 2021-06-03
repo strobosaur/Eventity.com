@@ -20,10 +20,6 @@
     <div class="event-list" id="event-list">
     </div>
 
-    <div id="logo-field">
-        <img src="./img/eventity_logo.png">
-    </div>
-
 </div>
 
 <?php

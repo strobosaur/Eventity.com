@@ -258,7 +258,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     // FIRST NAME
     if(empty($userFnameValue)){ 
         $userFnameValue = $result['fname'];
-        $stmt->bindParam(':fname', $userFnameValue);
+        $stmt->bindParam(':fname', $userFnameValue, SQLITE3_TEXT);
     } else {
         $stmt->bindParam(':fname', $userFnameValue, SQLITE3_TEXT);
     }
@@ -266,7 +266,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     // LAST NAME
     if(empty($userLnameValue)){ 
         $userLnameValue = $result['fname'];
-        $stmt->bindParam(':lname', $userLnameValue);
+        $stmt->bindParam(':lname', $userLnameValue, SQLITE3_TEXT);
     } else {
         $stmt->bindParam(':lname', $userLnameValue, SQLITE3_TEXT);
     }
@@ -274,7 +274,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     // USER NAME
     if(empty($userUnameValue)){ 
         $userUnameValue = $result['uname'];
-        $stmt->bindParam(':uname', $userUnameValue);
+        $stmt->bindParam(':uname', $userUnameValue, SQLITE3_TEXT);
     } else {
         $stmt->bindParam(':uname', $userUnameValue, SQLITE3_TEXT);
     }
@@ -282,7 +282,7 @@ function updateUserProfile($userID,$userFname,$userLname,$userUname,$userEmail,$
     // EMAIL ADRESS
     if(empty($userEmailValue)){ 
         $userEmailValue = $result['email'];
-        $stmt->bindParam(':email', $userEmailValue);
+        $stmt->bindParam(':email', $userEmailValue, SQLITE3_TEXT);
     } else {
         $stmt->bindParam(':email', $userEmailValue, SQLITE3_TEXT);
     }
