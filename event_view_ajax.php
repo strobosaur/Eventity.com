@@ -73,7 +73,7 @@ if(!isset($_SESSION['userID']) || !isset($_POST['view_event'])){
 
                 <div class="event-list-low">
                     <div class="event-list-lowleft">
-                        <img id="profile-img2" src="' . $profileImg . '" width="40px" height="40px">
+                        <img id="profile-img3" src="' . $profileImg . '" width="64px" height="64px">
                         <small>Created by: <br><b>' . $userUname . '</b></small>
                     </div>
                     <div class="event-list-lowmid">
