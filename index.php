@@ -4,6 +4,9 @@
 
 <div id="mid-column">
 
+<div id="profile-img-menu-field">    
+</div>
+
     <div class="left-field" id="left-field">
         <?php
             if(!isset($_SESSION['userID'])){

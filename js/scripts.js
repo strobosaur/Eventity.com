@@ -80,10 +80,12 @@ function getEventViewAjax(eventID){
 
             // IS THERE WEATHER DATA FOR THE DATE/TIME OF THIS EVENT?
             if (weatherArr !== false){
-                $("#weather-box").append("<h4>Expected weather at this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
+                //$("#weather-box").append("<h4>Expected weather at this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
+                $("#weather-box").append("<h4>Expected weather at this location right now:</h4><br>");
                 $("#weather-box").append("<p>Temperature: <b>" + weatherArr.temp + " °C</b><br>Feels like: <b>" + weatherArr.temp_app + " °C</b><br>Wind: <b>" + weatherArr.wind + " m/s</b><br>Rain: <b>" + weatherArr.rain + " mm</b><br>In general: <b>" + weatherArr.desc + "</b></p>");
             } else {
-                $("#weather-box").append("<h4>Expected weather in this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
+                //$("#weather-box").append("<h4>Expected weather in this location on " + response.sdate + " around " + response.hour + ":" + response.mins + "</h4><br>");
+                $("#weather-box").append("<h4>Expected weather at this location right now:</h4><br>");
                 $("#weather-box").append("<p>Too early to tell...</p>");
             }
         }
@@ -141,14 +143,20 @@ function getSideMenuAjax(){
 // FUNCTION GET MENU
 function getMenuAjax(){
     $.ajax({
-        url: './include/views/nav_menu_ajax.php',
+        url: 'nav_menu_ajax.php',
         type: 'POST',
+        dataType: "json",
         data: {
             'get_menu': 1,
         },
         success: function(response){
             $("#header-mid").empty();
-            $("#header-mid").append(response);
+            $("#header-mid").append(response.menu);
+            if(response.img != ''){
+                getProfileImgMenu(response.img);
+            } else {
+                $("#profile-img-menu-field").empty();
+            }
             $.getScript("./js/nav_menu_action.js");
         }
     });
@@ -185,4 +193,10 @@ function stopUpdateEvents(){
 function startUpdateEvents(){
     clearInterval(eventListUpdate);
     eventListUpdate = setInterval(updateEventListAjax, 5000);
+}
+
+// GET PROFILE IMG MENU
+function getProfileImgMenu(imgpath){
+    $("#profile-img-menu-field").empty();
+    $("#profile-img-menu-field").append('<img id="profile-img2" src="' + imgpath + '" width="40px" height="40px">');
 }
